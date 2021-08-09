@@ -20,5 +20,15 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Reponsive Code
+```scss
+body {
+    background: $base-color;
+    @include tablet-view {
+        background: #ff0fff;
+      }
+    @include mobile-view {
+      background: #00ffff;
+    }
+}
+```
