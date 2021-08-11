@@ -32,3 +32,17 @@ body {
     }
 }
 ```
+
+```css
+@media only screen and (max-width: 768px) {
+  body {
+    background: #ff0fff;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  body {
+    background: #00ffff;
+  }
+}
+```
