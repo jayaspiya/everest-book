@@ -1,3 +1,3 @@
 ;<template>
-  <h1>Discover Page</h1>
+  <h2>Discover Page</h2>
 </template>
