@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from "axios"
 import AuthContainer from "../components/UI/AuthContainer.vue"
 export default {
   components:{
@@ -37,10 +38,22 @@ export default {
     }
   }, 
   methods:{
-    registerUser(){
+    async registerUser(){
       if(this.password === this.confirmPassword){
-        console.log("User register")
-        this.$router.push("home")
+        try {
+          const res = await axios.post("https://everest-book.herokuapp.com/user/registr",{
+            email: this.email,
+            password: this.password
+          })
+          if(res.status === 201){
+            this.$router.push("home")
+          }
+          else{
+            alert("something went wrong")
+          }
+        } catch (error) {
+          alert(error)
+        }
       }
       else{
         alert("The password and confirm password doesn't match")
