@@ -17,4 +17,16 @@
     margin: 2rem auto;
     max-width: 60%;
 }
+/* Tablet View */
+@media only screen and (max-width: 768px) {
+  .card{
+    max-width: 90%;
+  }
+}
+/* Mobile View */
+@media only screen and (max-width: 576px) {
+  .card{
+    max-width: 100%;
+  }
+}
 </style>
