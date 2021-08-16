@@ -16,45 +16,46 @@ export default {
 
 <style>
 /* Use Variable */
+:root {
+  --base-color: #2B7498;
+  --alt-color: #ffffff;
+  --background: #f5f5f5;
+}
 body{
-  background: #f5f5f5;
+  background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-
 h1, h2{
-    color: #2B7498;
-  }
-
-  main{
-    height: 120vh;
-    padding: 0 5rem;
-  }
-
-  button {
-    border: 2px solid #2B7498;
-    background-color:#2B7498 ;
-    padding: 3px 10px;
-    border-radius: 2px;
-    transition: .2s all ease-out;
-      text-decoration: none;
-      color: #ffffff;
-      cursor: pointer;
-      
-  }
-  button:hover{
-        background-color: #ffffff;
-        color: #2B7498;
-        border: 2px solid #2B7498
-    }
-
+  color: var(--base-color);
+}
+main{
+  height: 120vh;
+  padding: 0 5rem;
+}
+button {
+  border: 2px solid var(--base-color);
+  background-color:var(--base-color) ;
+  padding: 3px 10px;
+  border-radius: 2px;
+  transition: .2s all ease-out;
+  text-decoration: none;
+  color: var(--alt-color);
+  cursor: pointer;
+}
+button:hover{
+  background-color: var(--alt-color);
+  color: var(--base-color);
+  border: 2px solid var(--base-color) 
+}
 /* Tablet View */
 /* @media only screen and (max-width: 768px) {
-} */
+}
+ */
 /* Mobile View */
 @media only screen and (max-width: 576px) {
   main{
     padding: 0 2rem;
   }
 }
-
+ 
 </style>
