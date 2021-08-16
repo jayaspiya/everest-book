@@ -4,7 +4,7 @@ import Home from "../views/Home.vue"
 import Discover from "../views/Discover.vue"
 import Signup from "../views/Signup.vue"
 import Login from "../views/Login.vue"
-
+import New from "../views/New.vue"
 const routes = [
   {
     path: "/",
@@ -25,6 +25,11 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: Signup,
+  },
+  {
+    path: "/new",
+    name: "New",
+    component: New,
   },
 ]
 

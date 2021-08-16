@@ -47,6 +47,30 @@ button:hover{
   color: var(--base-color);
   border: 2px solid var(--base-color) 
 }
+/* Form Control */
+.form-control {
+  margin: 0.5rem 0;
+}
+.form-control input{
+  width: 100%;
+}
+.form-control textarea{
+  width: 100%;
+}
+.form-control label{
+  font-weight: bold;
+  display: block;
+}
+
+.form-control input{
+     padding: 1px;
+     outline: none;
+     transition: .2s all ease-out;   
+}
+.form-control input:focus{
+        border: 2px solid var(--base-color);
+}
+
 /* Tablet View */
 /* @media only screen and (max-width: 768px) {
 }
