@@ -23,6 +23,15 @@
             <input type="number" name="releasedYear" autocomplete="off" v-model="releasedYear" required>
         </div>
         <div class="form-control">
+            <label for="tags">Tags</label>
+            <input type="text" name="tags" autocomplete="off" v-model="tagName" placeholder="Write Tags and press Enter" @keyup.space="addTag">
+            <ul>
+                <li v-for="(tag, index) in tags" :key="index">
+                    {{tag}}
+                </li>
+            </ul>
+        </div>
+        <div class="form-control">
             <label for="synopsis">Synopsis</label>
             <textarea name="synopsis" cols="30" rows="10" v-model="synopsis"></textarea>
         </div>
@@ -39,11 +48,13 @@ import Toast from "../utils/Toast.js"
 export default {
     data(){
         return {
+            tagName:"",
             title: "",
             author: "",
             isbn: "",
             price: 0,
             synopsis: "",
+            tags: [],
             releasedYear: 2020
         }
     },
@@ -55,12 +66,34 @@ export default {
                 isbn: this.isbn,
                 price: this.price,
                 synopsis: this.synopsis,
-                releasedYear: this.releasedYear
+                releasedYear: this.releasedYear,
+                tags: this.tags
             }
             await api.post("book/", book)
             const toast = new Toast("Book added")
             toast.show()
+        },
+        addTag(){
+            if(this.tagName.trim() !== ""){
+                this.tags.push(this.tagName)
+                this.tagName = ""
+            }
         }
     }
 }
 </script>
+
+<style scoped>
+ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+li{
+    background: var(--base-color);
+    border-radius: 10px;
+    color: var(--alt-color);
+    padding: 3px 5px;
+    margin: 1px 5px;
+}
+</style>
