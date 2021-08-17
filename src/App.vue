@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import "mosha-vue-toastify/dist/style.css"
 import TheHeader from "./components/TheHeader.vue"
 export default {
   components:{

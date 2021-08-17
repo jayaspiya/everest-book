@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import api from "../api.js"
+import api from "../utils/api.js"
 import AuthContainer from "../components/UI/AuthContainer.vue"
 export default {
   components:{

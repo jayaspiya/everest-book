@@ -34,7 +34,8 @@
 </template>
 
 <script>
-import api from "../api.js"
+import api from "../utils/api.js"
+import Toast from "../utils/Toast.js"
 export default {
     data(){
         return {
@@ -57,7 +58,8 @@ export default {
                 releasedYear: this.releasedYear
             }
             await api.post("book/", book)
-            alert("Book added")
+            const toast = new Toast("Book added")
+            toast.show()
         }
     }
 }
