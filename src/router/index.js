@@ -5,6 +5,7 @@ import Discover from "../views/Discover.vue"
 import Signup from "../views/Signup.vue"
 import Login from "../views/Login.vue"
 import New from "../views/New.vue"
+import Admin from "../views/Admin.vue"
 const routes = [
   {
     path: "/",
@@ -27,9 +28,16 @@ const routes = [
     component: Signup,
   },
   {
-    path: "/new",
-    name: "New",
-    component: New,
+    path: "/admin",
+    name: "Admin",
+    component: Admin,
+    children: [
+      {
+        path: "new",
+        name: "New",
+        component: New,
+      },
+    ],
   },
 ]
 
