@@ -1,7 +1,7 @@
 ;<template>
   <header :class="{headerScroll:scrollHeader}">
     <h1>Everest Book</h1>
-    <nav>
+    <nav :class="{navActive:openNav}">
       <ul>
         <li>
           <router-link to="/">Home</router-link>
@@ -17,6 +17,9 @@
         </li>
       </ul>
     </nav>
+    <span @click="toggleMenu" class="menu">
+      <hamburger-menu :navActive="openNav"></hamburger-menu>
+    </span>
   </header>
   <div class="header-cover"></div>
 </template>
@@ -31,7 +34,8 @@ export default {
   },
   data(){
     return{
-      scrollHeader: false
+      scrollHeader: false,
+      openNav: false
     }
   },
   methods: {
@@ -42,6 +46,9 @@ export default {
       else{
         this.scrollHeader = false
       }
+    },
+    toggleMenu(){
+      this.openNav = !this.openNav
     }
   }
 }
@@ -86,7 +93,39 @@ header{
   a.router-link-active
   {
      background:var(--base-color);
-    color: #ffffff;
+    color: var(--alt-color);
   
   }
+  nav{
+    display: block;
+  }
+  .menu{
+    display: none;
+    z-index: 100;
+  }
+  /* Tablet View */
+@media only screen and (max-width: 768px) {
+  .menu{
+    display: block;
+  }
+  nav{
+    position: absolute;
+    background: var(--alt-color);
+    padding-top: 8vh;
+    right: -200px;
+    top: 0;
+    height: 100vh;
+    transition: all .5s ease-out;
+  }
+  .navActive{
+    right: 0;
+  }
+  nav > ul{
+    flex-direction: column;
+    z-index: 10;
+  }
+  nav li{
+      margin:10px;
+  }
+}
 </style>
