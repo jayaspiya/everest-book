@@ -10,7 +10,7 @@
           <router-link to="/discover"> Discover </router-link>
         </li>
         <li>
-          <router-link to="/new"> Add Book </router-link>
+          <router-link to="/admin">Admin</router-link>
         </li>
         <li>
           <router-link to="/login"> Login </router-link>
@@ -73,29 +73,8 @@ header{
     height: 8vh;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   }
-  nav > ul{
-    display: flex;
-    list-style: none;
-  }
-  nav li{
-      margin: 0 10px;
-  }
-  a{
-    border: 2px var(--base-color) solid;
-    padding: 2px 10px;
-    border-radius: 2px;
-    text-transform: uppercase;
-    transition: .2s all ease-out;
-      text-decoration: none;
-      color: var(--base-color);
-  }
-  a:hover,
-  a.router-link-active
-  {
-     background:var(--base-color);
-    color: var(--alt-color);
   
-  }
+  
   nav{
     display: block;
   }

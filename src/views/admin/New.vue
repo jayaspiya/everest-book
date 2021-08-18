@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import api from "../utils/api.js"
-import Toast from "../utils/Toast.js"
+import api from "../../utils/api.js"
+import Toast from "../../utils/Toast.js"
 export default {
     data(){
         return {

@@ -28,6 +28,48 @@ export default {
   --alt-color: #ffffff;
   --background: #f5f5f5;
 }
+
+nav a{
+    border: 2px var(--base-color) solid;
+    padding: 2px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    transition: .2s all ease-out;
+      text-decoration: none;
+      color: var(--base-color);
+}
+nav a:hover,
+nav a.router-link-active
+{
+  background:var(--base-color);
+  color: var(--alt-color);
+}
+/* Alt Nav */
+nav.altnav a{
+    background: var(--base-color);
+    border: 2px var(--base-color) solid;
+    padding: 2px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    transition: .2s all ease-out;
+      text-decoration: none;
+      color: var(--background);
+}
+nav.altnav a:hover,
+nav.altnav a.router-link-active
+{
+  background:var(--background);
+  color: var(--base-color);
+}
+/* Nav */
+nav > ul{
+  display: flex;
+  list-style: none;
+}
+nav li{
+  margin: 0 10px;
+}
+
 body{
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
