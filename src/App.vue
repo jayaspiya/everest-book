@@ -1,7 +1,9 @@
 ;<template>
   <TheHeader/>
   <main>
-    <router-view />
+    <transition name="route" mode="out-in">
+      <router-view />
+    </transition>
   </main>
 </template>
 
@@ -69,7 +71,23 @@ nav > ul{
 nav li{
   margin: 0 10px;
 }
+/* Trasition */
+.route-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
 
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.route-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+
+/* Global */
 body{
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
