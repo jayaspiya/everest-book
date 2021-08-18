@@ -1,6 +1,6 @@
 ;<template>
-  <h2>Add Book Page</h2>
   <base-card>
+  <h2>Add Book Page</h2>
     <form @submit.prevent="addBook">
         <div class="form-control">
             <label for="title">Title</label>

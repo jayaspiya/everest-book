@@ -1,6 +1,7 @@
 ;<template>
   <h2>Home page</h2>
-  <div class="book-grid">
+  <base-spinner v-if="isloading"></base-spinner>
+  <div class="book-grid" v-else>
     <TheBook v-for="book in books" :key="book._id" :book="book"/>
   </div>
 </template>
@@ -13,12 +14,14 @@ export default {
   },
   data(){
     return{
-      books:[]
+      books:[],
+      isloading: true
     }
   },
   async mounted(){
     const res = await api.get("/book")
     this.books = res.data
+    this.isloading = false
   }
 }
 </script>

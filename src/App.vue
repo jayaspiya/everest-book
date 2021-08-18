@@ -36,7 +36,6 @@ h1, h2{
   color: var(--base-color);
 }
 main{
-  height: 120vh;
   padding: 0 5rem;
 }
 button {
