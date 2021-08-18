@@ -16,6 +16,12 @@ export default {
 </script>
 
 <style>
+/* reset */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /* Use Variable */
 :root {
   --base-color: #2B7498;
