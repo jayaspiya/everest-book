@@ -1,16 +1,14 @@
 ;<template>
   <h2>Home page</h2>
   <base-spinner v-if="isloading"></base-spinner>
-  <div class="book-grid" v-else>
-    <TheBook v-for="book in books" :key="book._id" :book="book"/>
-  </div>
+  <book-list v-else :books="books"></book-list>
 </template>
 <script>
 import api from "../utils/api.js"
-import TheBook from "../components/TheBook.vue"
+import BookList from "../components/BookList.vue"
 export default {
   components:{
-    TheBook
+    BookList
   },
   data(){
     return{

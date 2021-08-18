@@ -32,7 +32,7 @@ body{
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-h1, h2{
+h1, h2, h3{
   color: var(--base-color);
 }
 main{

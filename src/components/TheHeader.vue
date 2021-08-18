@@ -115,7 +115,8 @@ header{
     right: -200px;
     top: 0;
     height: 100vh;
-    transition: all .5s ease-out;
+    transition: all .3s ease-out;
+    padding-right: 40px;
   }
   .navActive{
     right: 0;
