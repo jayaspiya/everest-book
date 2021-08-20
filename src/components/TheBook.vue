@@ -9,14 +9,33 @@
         </h3>
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
+        <button @click="addItem">Add to cart</button>
     </div>
 </div>
 </template>
 <script>
+import api from "../utils/api.js"
+import Toast from "../utils/Toast.js"
 export default {
     props:[
         "book"
-    ]
+    ],
+    methods:{
+        async addItem(){
+            const token = localStorage.getItem("accessToken")
+            const url = "/user/addtocart/"+this.book._id
+            const res = await api.post(url,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}` 
+                    }
+                }
+            )
+            console.log(res.data)
+            const toast  = new Toast(this.book.title + " Added")
+            toast.show()
+        }
+    }
 }
 </script>
 

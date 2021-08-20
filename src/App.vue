@@ -74,12 +74,12 @@ nav li{
 /* Trasition */
 .route-enter-from {
   opacity: 0;
-  transform: translateY(-30px);
+  transform: translateY(30px);
 }
 
 .route-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(-30px);
 }
 
 .route-enter-active {
