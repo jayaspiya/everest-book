@@ -40,8 +40,8 @@ export default {
         email: this.email,
         password:this.password
       })
-      localStorage.setItem("accessToken",res.data.accessToken )
-      const toast = new Toast("Loggin Successful")
+      localStorage.setItem("accessToken","Bearer " + res.data.accessToken )
+      const toast = new Toast(res.data.message)
       toast.show()
     }
   }

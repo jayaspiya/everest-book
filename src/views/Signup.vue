@@ -71,9 +71,9 @@ export default {
             password: this.password,
             confirmPassword: this.confirmPassword,
           })
-          if(res.status === 201){
+          if(res.data.success){
             this.$router.push("home")
-            const toast = new Toast("New User registered")
+            const toast = new Toast(res.data.message)
             toast.show()
           }
           else{

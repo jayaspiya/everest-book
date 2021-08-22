@@ -1,6 +1,5 @@
 ;<template>
   <h3>Cart</h3>
-  <!-- {{cartBooks}} -->
   <base-spinner v-if="isloading"></base-spinner>
   <book-list v-else :books="cartBooks"></book-list>
 </template>
@@ -15,11 +14,11 @@ export default {
         const token = localStorage.getItem("accessToken")
         const res = await api.get("/user/cart",{
             headers: {
-                'Authorization': `Bearer ${token}` 
+                'Authorization': token
             }
         })
         this.isloading = false
-        this.cartBooks = res.data
+        this.cartBooks = res.data.data
     }, 
     data(){
         return{

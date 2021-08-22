@@ -18,7 +18,7 @@ export default {
   },
   async mounted(){
     const res = await api.get("/book")
-    this.books = res.data
+    this.books = res.data.data
     this.isloading = false
   }
 }
