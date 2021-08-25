@@ -9,7 +9,7 @@
         </h3>
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
-        <button @click="addItem">Add to cart</button>
+        <button @click="addItem">{{btnText}}</button>
     </div>
 </div>
 </template>
@@ -20,10 +20,16 @@ export default {
     props:[
         "book"
     ],
+    data(){
+        return{
+            btnText: "Add to cart",
+        }
+    },
     methods:{
         async addItem(){
             const token = localStorage.getItem("accessToken")
             const url = "/user/addtocart/"+this.book._id
+            this.btnText = "Adding"
             const res = await api.post(url,
                 {
                     headers: {
@@ -31,8 +37,8 @@ export default {
                     }
                 }
             )
-            console.log(res.data)
-            const toast  = new Toast(this.book.title + " Added")
+            this.btnText = "In Cart"
+            const toast  = new Toast(res.data.message)
             toast.show()
         }
     }
@@ -40,7 +46,10 @@ export default {
 </script>
 
 <style scoped>
-
+button{
+    width: 80%;
+    margin: 0 auto;
+}
 .cover{
     padding: 10px;
     margin: 10px;

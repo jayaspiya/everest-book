@@ -1,5 +1,6 @@
 ;<template>
   <TheHeader/>
+  {{$store.getters.count}}
   <main>
     <transition name="route" mode="out-in">
       <router-view />
@@ -13,6 +14,9 @@ import TheHeader from "./components/TheHeader.vue"
 export default {
   components:{
     TheHeader
+  },
+  created(){
+    
   }
 }
 </script>

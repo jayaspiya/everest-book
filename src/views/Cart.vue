@@ -14,7 +14,7 @@ export default {
         const token = localStorage.getItem("accessToken")
         const res = await api.get("/user/cart",{
             headers: {
-                'Authorization': token
+                'Authorization': "Bearer " +token
             }
         })
         this.isloading = false
