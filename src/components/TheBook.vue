@@ -1,17 +1,18 @@
 <template>
+<router-link :to="book._id">
 <div class="cover">
     <img :src="book.imageUrl" :alt="book.title" loading="lazy" v-if="book.imageUrl">
-    <img src="../assets/no-front.png" :alt="book.title" loading="lazy" v-else>
-
+    <img :src="book.cover.front" :alt="book.title" loading="lazy" v-else>
     <div>
         <h3 class="title">
             {{book.title}}
         </h3>
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
-        <button @click="addItem">{{btnText}}</button>
+        <button @click="addItem" :disabled="btnDisabled">{{btnText}}</button>
     </div>
 </div>
+</router-link>
 </template>
 <script>
 import api from "../utils/api.js"
@@ -23,6 +24,7 @@ export default {
     data(){
         return{
             btnText: "Add to cart",
+            btnDisabled: false
         }
     },
     methods:{
@@ -38,9 +40,10 @@ export default {
                 }
             )
             this.btnText = "In Cart"
+            this.btnDisabled = true
             const toast  = new Toast(res.data.message)
             toast.show()
-        }
+        },
     }
 }
 </script>
@@ -55,9 +58,11 @@ button{
     margin: 10px;
     background: var(--alt-color);
     width: fit-content;
+    cursor: pointer;
 }
 img{
-    max-height:250px;
+    height:200px;
+    width: 125px;
     margin: 0 10px;
 }
 .price::before{

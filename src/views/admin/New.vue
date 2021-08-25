@@ -69,9 +69,8 @@ export default {
                 releasedYear: this.releasedYear,
                 tags: this.tags
             }
-            await api.post("book/", book)
-            const toast = new Toast("Book added")
-            toast.show()
+            const res = await api.post("book/", book)
+            Toast(res.data.message).show()
         },
         addTag(){
             if(this.tagName.trim() !== ""){

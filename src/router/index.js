@@ -5,6 +5,7 @@ import Discover from "../views/Discover.vue"
 import Signup from "../views/Signup.vue"
 import Login from "../views/Login.vue"
 import Cart from "../views/Cart.vue"
+import Book from "../views/Book.vue"
 import Admin from "../views/Admin.vue"
 import New from "../views/admin/New.vue"
 import Dashboard from "../views/admin/Dashboard.vue"
@@ -50,6 +51,11 @@ const routes = [
         component: Dashboard,
       },
     ],
+  },
+  {
+    path: "/:id",
+    name: "Book",
+    component: Book,
   },
 ]
 
