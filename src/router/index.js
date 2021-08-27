@@ -6,6 +6,7 @@ import Signup from "../views/Signup.vue"
 import Login from "../views/Login.vue"
 import Cart from "../views/Cart.vue"
 import Book from "../views/Book.vue"
+import Profile from "../views/Profile.vue"
 import Admin from "../views/Admin.vue"
 import New from "../views/admin/New.vue"
 import Dashboard from "../views/admin/Dashboard.vue"
@@ -19,6 +20,11 @@ const routes = [
     path: "/discover",
     name: "Discover",
     component: Discover,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
   },
   {
     path: "/login",

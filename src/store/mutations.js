@@ -1,5 +1,5 @@
 export default {
-  increment(state) {
-    state.count++
+  setToken(state, token) {
+    state.token = token
   },
 }

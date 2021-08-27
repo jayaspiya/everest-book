@@ -13,6 +13,9 @@
           <router-link to="/admin">Admin</router-link>
         </li>
         <li>
+          <router-link to="/profile"> Profile </router-link>
+        </li>
+        <li>
           <router-link to="/cart">Cart</router-link>
         </li>
         <li>
@@ -38,9 +41,12 @@ export default {
   data(){
     return{
       scrollHeader: false,
-      openNav: false
+      openNav: false,
     }
   },
+  // computed:{
+  //   isLogged(){ return this.$store.getters.token != ""}
+  // },
   methods: {
     handleScroll () {
       if (scrollY > 30){

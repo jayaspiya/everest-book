@@ -1,6 +1,6 @@
 ;<template>
   <TheHeader/>
-  {{$store.getters.count}}
+  {{$store.getters.token}}
   <main>
     <transition name="route" mode="out-in">
       <router-view />
@@ -16,7 +16,7 @@ export default {
     TheHeader
   },
   created(){
-    
+    this.$store.commit("setToken", localStorage.getItem("accessToken"))
   }
 }
 </script>
@@ -116,6 +116,9 @@ button:hover{
   background-color: var(--alt-color);
   color: var(--base-color);
   border: 2px solid var(--base-color) 
+}
+.flex{
+  display: flex;
 }
 /* Form Control */
 .form-control {

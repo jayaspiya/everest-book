@@ -5,8 +5,7 @@ import mutations from "./mutations.js"
 export default createStore({
   state() {
     return {
-      token: null,
-      count: 4,
+      token: "",
     }
   },
   getters,

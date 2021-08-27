@@ -1,18 +1,22 @@
 <template>
-<router-link :to="book._id">
 <div class="cover">
     <img :src="book.imageUrl" :alt="book.title" loading="lazy" v-if="book.imageUrl">
     <img :src="book.cover.front" :alt="book.title" loading="lazy" v-else>
     <div>
-        <h3 class="title">
+         <h3 class="title">
             {{book.title}}
         </h3>
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
+        <div class="flex">
+        <router-link :to="book._id">
+            <button>View</button>
+        </router-link>
         <button @click="addItem" :disabled="btnDisabled">{{btnText}}</button>
+        </div>
+
     </div>
 </div>
-</router-link>
 </template>
 <script>
 import api from "../utils/api.js"
