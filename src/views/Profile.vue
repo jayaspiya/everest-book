@@ -12,25 +12,25 @@
 </template>
 <script>
 import api from "../utils/api.js"
+import Toast from "../utils/Toast.js"
 export default {
     async mounted(){
-        const token = this.$store.getters.token
+        const token = localStorage.getItem("token")
         const res = await api.get("/user/profile",{
             headers: {
-                'Authorization': "Bearer " +token
+                'Authorization': "Bearer " + token
             }
         })
         this.isloading = false
-
         if(res.data.success){
             const resJson = res.data.data[0]
         this.isloading = false
         this.user = resJson
         }
         else{
-            this.user = "User Not login"
+            const toast = new Toast(res.data.message,"","danger")
+            toast.show()
         }
-
         
     },
     data(){
@@ -41,9 +41,9 @@ export default {
     },
     methods:{
         logoutUser(){
-            localStorage.setItem("accessToken","" )
+            localStorage.setItem("token","" )
             this.$router.push("login")
-            this.$forceUpdate()
+            window.location.reload()
         }
     }
 }

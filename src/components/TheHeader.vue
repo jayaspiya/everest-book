@@ -9,16 +9,16 @@
         <li>
           <router-link to="/discover"> Discover </router-link>
         </li>
-        <li>
-          <router-link to="/admin">Admin</router-link>
+        <li v-if="isAuth">
+          <router-link to="/admin" >Admin</router-link>
         </li>
-        <li>
+        <li v-if="isAuth">
           <router-link to="/profile"> Profile </router-link>
         </li>
-        <li>
+        <li v-if="isAuth">
           <router-link to="/cart">Cart</router-link>
         </li>
-        <li>
+        <li v-if="!isAuth">
           <router-link to="/login"> Login </router-link>
         </li>
       </ul>
@@ -34,6 +34,10 @@
 export default {
   created () {
     window.addEventListener('scroll', this.handleScroll);
+    const token = localStorage.getItem("token")
+    if(token && token != "" ){
+      this.isAuth = true
+    }
   },
   unmounted () {
     window.removeEventListener('scroll', this.handleScroll);
@@ -42,11 +46,9 @@ export default {
     return{
       scrollHeader: false,
       openNav: false,
+      isAuth: false
     }
   },
-  // computed:{
-  //   isLogged(){ return this.$store.getters.token != ""}
-  // },
   methods: {
     handleScroll () {
       if (scrollY > 30){
@@ -82,8 +84,6 @@ header{
     height: 8vh;
     box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
   }
-  
-  
   nav{
     display: block;
   }

@@ -6,19 +6,26 @@
 <script>
 import api from "../utils/api.js"
 import BookList from "../components/BookList.vue"
+import Toast from "../utils/Toast.js"
 export default {
     components:{
         BookList
     },
     async created(){
-        const token = localStorage.getItem("accessToken")
+        const token = localStorage.getItem("token")
         const res = await api.get("/user/cart",{
             headers: {
                 'Authorization': "Bearer " +token
             }
         })
-        this.isloading = false
-        this.cartBooks = res.data.data
+            this.isloading = false
+        if(res.data.success){
+            this.cartBooks = res.data.data
+        }
+        else{
+            const toast = new Toast(res.data.message,"","danger")
+            toast.show()
+        }
     }, 
     data(){
         return{

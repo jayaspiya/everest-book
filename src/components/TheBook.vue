@@ -12,7 +12,7 @@
             <router-link :to="book._id">
                 <button>View</button>
             </router-link>
-            <button @click="addItem" :disabled="btnDisabled">{{btnText}}</button>
+            <button @click="addItem" :disabled="btnDisabled" v-if="isAuth">{{btnText}}</button>
         </div>
 
     </div>
@@ -28,12 +28,19 @@ export default {
     data(){
         return{
             btnText: "Add to cart",
-            btnDisabled: false
+            btnDisabled: false,
+            isAuth: false
+        }
+    },
+    mounted(){
+        const token = localStorage.getItem("token")
+        if(token && token != ""){
+            this.isAuth = true
         }
     },
     methods:{
         async addItem(){
-            const token = localStorage.getItem("accessToken")
+            const token = localStorage.getItem("token")
             const url = "/user/addtocart/"+this.book._id
             this.btnText = "Adding"
             const res = await api.post(url,
@@ -43,15 +50,16 @@ export default {
                     }
                 }
             )
-            this.btnText = "In Cart"
-            this.btnDisabled = true
             if(res.data.success){
+                this.btnText = "In Cart"
+                this.btnDisabled = true
                 const toast  = new Toast(res.data.message)
-            toast.show()
+                toast.show()
             }
             else{
-                const toast  = new Toast(res.data.message,"", "warning")
-            toast.show()
+                this.btnText = "Add to Cart"
+                const toast  = new Toast(res.data.message,"", "danger")
+                toast.show()
             }
             
         },

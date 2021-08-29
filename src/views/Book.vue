@@ -4,7 +4,16 @@
 <div v-else>
   <h3>{{title}}</h3>
   {{author}}
-  <book-mockup :backCover="backCover" :frontCover="frontCover" :sideCover="sideCover"/>
+  <div class="flex">
+    <book-mockup :backCover="backCover" :frontCover="frontCover" :sideCover="sideCover"/>
+    <div>
+        <h3>Synopsis</h3>
+        <p>
+        {{synopsis}}
+        </p>
+        <h3>Reviews</h3>
+        </div>
+  </div>
 </div>
 </template>
 <script>
@@ -52,3 +61,17 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.flex > div{
+    max-width: 60%;
+}
+@media only screen and (max-width: 768px) {
+  .flex{
+      flex-direction: column;
+  }
+  .flex > div{
+    max-width: 100%;
+}
+}
+</style>

@@ -40,9 +40,10 @@ export default {
         email: this.email,
         password:this.password
       })
-      localStorage.setItem("accessToken",res.data.accessToken )
+      localStorage.setItem("token",res.data.accessToken )
       const toast = new Toast(res.data.message)
       toast.show()
+      window.location.reload()
     }
   }
 }
