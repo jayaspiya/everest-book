@@ -72,7 +72,7 @@ export default {
             confirmPassword: this.confirmPassword,
           })
           if(res.data.success){
-            this.$router.push("home")
+            this.$router.push("login")
             const toast = new Toast(res.data.message)
             toast.show()
           }

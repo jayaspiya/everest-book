@@ -1,7 +1,11 @@
 ;<template>
-  <h2>{{title}}</h2>
+<h2>View</h2>
+  <base-spinner v-if="isloading"></base-spinner>
+<div v-else>
+  <h3>{{title}}</h3>
   {{author}}
   <book-mockup :backCover="backCover" :frontCover="frontCover" :sideCover="sideCover"/>
+</div>
 </template>
 <script>
 import api from "../utils/api.js"
@@ -23,6 +27,7 @@ export default {
             frontCover:"",
             sideCover:"",
             backCover:"",
+            isloading : true
         }
     },
     async mounted(){
@@ -39,6 +44,7 @@ export default {
             this.frontCover = data.cover.front
             this.sideCover = data.cover.side
             this.backCover = data.cover.back
+            this.isloading = false
         }
         else{
             Toast("Invalid Result").show()

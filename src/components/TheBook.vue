@@ -9,10 +9,10 @@
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
         <div class="flex">
-        <router-link :to="book._id">
-            <button>View</button>
-        </router-link>
-        <button @click="addItem" :disabled="btnDisabled">{{btnText}}</button>
+            <router-link :to="book._id">
+                <button>View</button>
+            </router-link>
+            <button @click="addItem" :disabled="btnDisabled">{{btnText}}</button>
         </div>
 
     </div>
@@ -45,21 +45,28 @@ export default {
             )
             this.btnText = "In Cart"
             this.btnDisabled = true
-            const toast  = new Toast(res.data.message)
+            if(res.data.success){
+                const toast  = new Toast(res.data.message)
             toast.show()
+            }
+            else{
+                const toast  = new Toast(res.data.message,"", "warning")
+            toast.show()
+            }
+            
         },
     }
 }
 </script>
 
 <style scoped>
-button{
-    width: 80%;
-    margin: 0 auto;
+.flex{
+    justify-content: space-evenly;
 }
 .cover{
     padding: 10px;
     margin: 10px;
+    max-width: 185px;
     background: var(--alt-color);
     width: fit-content;
     cursor: pointer;
@@ -67,7 +74,7 @@ button{
 img{
     height:200px;
     width: 125px;
-    margin: 0 10px;
+    margin: 0 20px;
 }
 .price::before{
     content: "Rs.";

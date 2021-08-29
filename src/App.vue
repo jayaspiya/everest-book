@@ -1,6 +1,6 @@
 ;<template>
   <TheHeader/>
-  {{$store.getters.token}}
+  {{token}}
   <main>
     <transition name="route" mode="out-in">
       <router-view />
@@ -17,6 +17,11 @@ export default {
   },
   created(){
     this.$store.commit("setToken", localStorage.getItem("accessToken"))
+  },
+  data(){
+    return{
+      token: this.$store.getters.token
+    }
   }
 }
 </script>
