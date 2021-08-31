@@ -6,6 +6,7 @@ export default createStore({
   state() {
     return {
       token: "",
+      intent: "",
     }
   },
   getters,

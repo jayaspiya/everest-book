@@ -10,6 +10,9 @@ import Profile from "../views/Profile.vue"
 import Admin from "../views/Admin.vue"
 import New from "../views/admin/New.vue"
 import Dashboard from "../views/admin/Dashboard.vue"
+import MissingCovers from "../views/admin/MissingCovers.vue"
+import UploadCover from "../views/admin/UploadCover.vue"
+
 function userGuard(to, from, next) {
   let isAuthenticated = false
   if (localStorage.getItem("token")) {
@@ -86,6 +89,16 @@ const routes = [
         path: "dashboard",
         name: "Dashboard",
         component: Dashboard,
+      },
+      {
+        path: "missing-covers",
+        name: "MissingCovers",
+        component: MissingCovers,
+      },
+      {
+        path: "upload-cover",
+        name: "UploadCover",
+        component: UploadCover,
       },
     ],
   },
