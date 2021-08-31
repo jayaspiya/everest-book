@@ -109,6 +109,10 @@ button:hover{
 .flex{
   display: flex;
 }
+.center{
+  display: flex;
+  justify-content: center;
+}
 /* Form Control */
 .form-control {
   margin: 0.5rem 0;
