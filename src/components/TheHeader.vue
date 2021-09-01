@@ -9,13 +9,13 @@
         <li>
           <router-link to="/discover"> Discover </router-link>
         </li>
-        <li v-if="isAuth">
+        <li v-if="isAuth && isAdmin">
           <router-link to="/admin" >Admin</router-link>
         </li>
-        <li v-if="isAuth">
+        <li v-if="isAuth && !isAdmin">
           <router-link to="/profile"> Profile </router-link>
         </li>
-        <li v-if="isAuth">
+        <li v-if="isAuth && !isAdmin">
           <router-link to="/cart">Cart</router-link>
         </li>
         <li v-if="!isAuth">
@@ -38,8 +38,12 @@ export default {
   created () {
     window.addEventListener('scroll', this.handleScroll);
     const token = localStorage.getItem("token")
+    const userType = localStorage.getItem("userType")
     if(token && token != "" ){
       this.isAuth = true
+    }
+    if(userType && userType === "ADMIN" ){
+      this.isAdmin = true
     }
   },
   unmounted () {
@@ -49,7 +53,9 @@ export default {
     return{
       scrollHeader: false,
       openNav: false,
-      isAuth: false
+      isAuth: false,
+      isUser: false,
+      isAdmin: false
     }
   },
   methods: {
@@ -65,7 +71,7 @@ export default {
       this.openNav = !this.openNav
     },
     logoutUser(){
-      localStorage.setItem("token","" )
+      localStorage.clear()
       this.$router.push("login")
       window.location.reload()
     }

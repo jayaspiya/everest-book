@@ -13,9 +13,10 @@
       <button>
         Submit
       </button>
-      
     </form>
     <p>New to Everest Book? <router-link to="/signup">Join Now</router-link></p>
+    <p>Admin Login <router-link to="/admin-login">Here</router-link></p>
+
   </auth-container>
 </template>
 
@@ -40,10 +41,17 @@ export default {
         email: this.email,
         password:this.password
       })
-      localStorage.setItem("token",res.data.accessToken )
-      const toast = new Toast(res.data.message)
-      toast.show()
-      window.location.reload()
+      if(res.data.success){
+        localStorage.setItem("token",res.data.accessToken )
+        localStorage.setItem("userType","USER")
+        window.location.reload()
+        const toast = new Toast(res.data.message)
+        toast.show()
+      }
+      else{
+        const toast = new Toast(res.data.message,"", "danger" )
+        toast.show()
+      }
     }
   }
 }

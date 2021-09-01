@@ -4,6 +4,7 @@ import Home from "../views/Home.vue"
 import Discover from "../views/Discover.vue"
 import Signup from "../views/Signup.vue"
 import Login from "../views/Login.vue"
+import AdminLogin from "../views/AdminLogin.vue"
 import Cart from "../views/Cart.vue"
 import Book from "../views/Book.vue"
 import Profile from "../views/Profile.vue"
@@ -60,6 +61,12 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    beforeEnter: userGuard2,
+  },
+  {
+    path: "/admin-login",
+    name: "AdminLogin",
+    component: AdminLogin,
     beforeEnter: userGuard2,
   },
   {

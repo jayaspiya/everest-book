@@ -5,7 +5,8 @@ import mutations from "./mutations.js"
 export default createStore({
   state() {
     return {
-      intent: "",
+      isUser: false,
+      isAdmin: false,
     }
   },
   getters,
