@@ -21,6 +21,9 @@
         <li v-if="!isAuth">
           <router-link to="/login"> Login </router-link>
         </li>
+        <li v-if="isAuth">
+              <a @click="logoutUser" href="#">Logout</a>
+        </li>
       </ul>
     </nav>
     <span @click="toggleMenu" class="menu">
@@ -60,6 +63,11 @@ export default {
     },
     toggleMenu(){
       this.openNav = !this.openNav
+    },
+    logoutUser(){
+      localStorage.setItem("token","" )
+      this.$router.push("login")
+      window.location.reload()
     }
   }
 }

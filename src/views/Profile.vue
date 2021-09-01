@@ -7,7 +7,6 @@
     <p>
         <b>UserJson</b>:{{user}}
     </p>
-    <button @click="logoutUser">Logout</button>
     </div>
 </template>
 <script>
@@ -37,13 +36,6 @@ export default {
         return{
             user:"",
             isloading: true 
-        }
-    },
-    methods:{
-        logoutUser(){
-            localStorage.setItem("token","" )
-            this.$router.push("login")
-            window.location.reload()
         }
     }
 }
