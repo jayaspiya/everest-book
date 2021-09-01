@@ -70,6 +70,7 @@ export default {
                 tags: this.tags
             }
             const res = await api.post("book/", book)
+            this.$router.push("/")
             Toast(res.data.message).show()
         },
         addTag(){
