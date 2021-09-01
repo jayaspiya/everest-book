@@ -35,9 +35,8 @@ export default {
     },
     methods:{
         uploadCover(id){
-            this.$store.commits("setIntent", id)
-            // this.$router.push("UploadCover")
-            // Open UploadCover
+            this.$store.commit("setIntent", id)
+            this.$router.push("upload-cover")
         }
     }
 }

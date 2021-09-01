@@ -5,7 +5,6 @@ import mutations from "./mutations.js"
 export default createStore({
   state() {
     return {
-      token: "",
       intent: "",
     }
   },

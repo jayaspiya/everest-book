@@ -1,5 +1,6 @@
 ;<template>
   <h3>Upload Cover</h3>
+  <h4>Hello {{id}}</h4>
   <div class="center">
      <div v-if="!image">
     <h2>Select an image</h2>
@@ -16,33 +17,53 @@
 </template>
 
 <script>
+import api from "../../utils/api.js"
+import Toast from "../../utils/Toast.js"
 export default {
   data(){
     return {
-      image: ''
+      image: '',
+      file: '',
+      id: this.$store.getters.intent
     }
   },
   methods: {
     onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
+      const files = e.target.files || e.dataTransfer.files;
       if (!files.length)
         return;
+      this.file = files[0]
       this.createImage(files[0]);
     },
     createImage(file) {
-      // var image = new Image();
-      var reader = new FileReader();
-      var vm = this;
+      const reader = new FileReader();
       reader.onload = (e) => {
-        vm.image = e.target.result;
+        this.image = e.target.result;
       };
       reader.readAsDataURL(file);
     },
     removeImage() {
       this.image = '';
     },
-    uploadCover(){
-      alert("yes")
+    async uploadCover(){
+      const formData = new FormData();
+      const imagefile = this.file;
+      formData.append("cover", imagefile);
+      const uri  = "/book/cover/"+ this.$store.getters.intent
+      const res = await api.put(uri,formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+      if(res.data.success){
+        const toast = new Toast(res.data.message)
+        toast.show()
+        this.$router.go(-1)
+      }
+      else{
+        const toast = new Toast(res.data.message, "", "danger")
+        toast.show()
+      }
     }
   }
 }
