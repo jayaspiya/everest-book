@@ -14,9 +14,11 @@ import Dashboard from "../views/admin/Dashboard.vue"
 import MissingCovers from "../views/admin/MissingCovers.vue"
 import UploadCover from "../views/admin/UploadCover.vue"
 
-function userGuard(to, from, next) {
+function adminGuard(to, from, next) {
   let isAuthenticated = false
-  if (localStorage.getItem("token")) {
+  const token = localStorage.getItem("token")
+  const isUser = localStorage.getItem("userType") === "ADMIN"
+  if (token && isUser) {
     isAuthenticated = true
   } else {
     isAuthenticated = false
@@ -24,7 +26,22 @@ function userGuard(to, from, next) {
   if (isAuthenticated) {
     next()
   } else {
-    next("/login")
+    next("/")
+  }
+}
+function userGuard(to, from, next) {
+  let isAuthenticated = false
+  const token = localStorage.getItem("token")
+  const isUser = localStorage.getItem("userType") === "USER"
+  if (token && isUser) {
+    isAuthenticated = true
+  } else {
+    isAuthenticated = false
+  }
+  if (isAuthenticated) {
+    next()
+  } else {
+    next("/")
   }
 }
 function userGuard2(to, from, next) {
@@ -37,7 +54,7 @@ function userGuard2(to, from, next) {
   if (isAuthenticated) {
     next()
   } else {
-    next("/profile")
+    next("/")
   }
 }
 const routes = [
@@ -90,7 +107,7 @@ const routes = [
     path: "/admin",
     name: "Admin",
     component: Admin,
-    beforeEnter: userGuard,
+    beforeEnter: adminGuard,
     children: [
       {
         path: "new",
