@@ -10,6 +10,7 @@ import Book from "../views/Book.vue"
 import Profile from "../views/Profile.vue"
 import Admin from "../views/Admin.vue"
 import New from "../views/admin/New.vue"
+import EditBook from "../views/admin/EditBook.vue"
 import Dashboard from "../views/admin/Dashboard.vue"
 import MissingCovers from "../views/admin/MissingCovers.vue"
 import UploadCover from "../views/admin/UploadCover.vue"
@@ -128,6 +129,12 @@ const routes = [
         path: "upload-cover/:id",
         name: "UploadCover",
         component: UploadCover,
+        props: true,
+      },
+      {
+        path: "edit/:id",
+        name: "EditBook",
+        component: EditBook,
         props: true,
       },
     ],

@@ -12,7 +12,13 @@
             <router-link :to="{ name: 'Book', params: { id: book._id }}">
                 <button>View</button>
             </router-link>
-            <button @click="addItem" :disabled="btnDisabled" v-if="isAuth">{{btnText}}</button>
+            <div v-if="isAuth">
+                <router-link :to="{ name: 'EditBook', params: { id: book._id }}" v-if="isAdmin">
+                    <button>Edit</button>
+                </router-link>
+                <button @click="addItem" :disabled="btnDisabled" v-else >{{btnText}}</button>
+
+            </div>
         </div>
 
     </div>
@@ -29,13 +35,18 @@ export default {
         return{
             btnText: "Add to cart",
             btnDisabled: false,
-            isAuth: false
+            isAuth: false,
+            isAdmin: false
         }
     },
     mounted(){
         const token = localStorage.getItem("token")
+        const isAdmin = localStorage.getItem("userType") === "ADMIN"
         if(token && token != ""){
             this.isAuth = true
+        }
+        if(isAdmin){
+            this.isAdmin = true
         }
     },
     methods:{
