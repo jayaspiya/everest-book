@@ -1,6 +1,5 @@
 ;<template>
   <h3>Upload Cover</h3>
-  <h4>Hello {{id}}</h4>
   <div class="center">
      <div v-if="!image">
     <h2>Select an image</h2>
@@ -49,7 +48,8 @@ export default {
       const formData = new FormData();
       const imagefile = this.file;
       formData.append("cover", imagefile);
-      const uri  = "/book/cover/"+ this.$store.getters.intent
+      const uri  = "/book/cover/"+ this.$router.params.id
+      console.log(uri)
       const res = await api.put(uri,formData, {
         headers: {
           'Content-Type': 'multipart/form-data'

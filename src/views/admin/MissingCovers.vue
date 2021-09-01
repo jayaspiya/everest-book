@@ -5,9 +5,9 @@
     <ul>
         <li v-for="book in books" :key="book._id">
             {{book.title}}
-            <button @click="uploadCover(book._id)">
-                Upload Cover
-            </button>
+            <router-link :to="{ name: 'UploadCover', params: { id: book._id }}">
+                <button>Upload Cover</button>
+            </router-link>
         </li>
     </ul>
 </div>
@@ -33,11 +33,5 @@ export default {
             isloading: true
         }
     },
-    methods:{
-        uploadCover(id){
-            this.$store.commit("setIntent", id)
-            this.$router.push("upload-cover")
-        }
-    }
 }
 </script>

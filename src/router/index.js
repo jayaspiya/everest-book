@@ -96,9 +96,10 @@ const routes = [
         component: MissingCovers,
       },
       {
-        path: "upload-cover",
+        path: "upload-cover/:id",
         name: "UploadCover",
         component: UploadCover,
+        props: true,
       },
     ],
   },
