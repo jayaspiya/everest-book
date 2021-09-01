@@ -1,5 +1,5 @@
 # everest-book
-
+[Unicons](https://antonreshetov.github.io/vue-unicons/)
 ## Project setup
 ```
 npm install

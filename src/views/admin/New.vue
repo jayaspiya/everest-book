@@ -1,6 +1,7 @@
 ;<template>
   <base-card>
   <h2>Add Book Page</h2>
+      
     <form @submit.prevent="addBook">
         <div class="form-control">
             <label for="title">Title</label>
@@ -24,11 +25,14 @@
         </div>
         <div class="form-control">
             <label for="tags">Tags</label>
-            <input type="text" name="tags" autocomplete="off" v-model="tagName" placeholder="Write Tags and press Enter" @keyup.space="addTag">
-            <ul>
-                <li v-for="(tag, index) in tags" :key="index">
-                    {{tag}}
+            <input type="text" name="tags" autocomplete="off" v-model="tagName" placeholder="Write Tags and press <Space>" @keyup.space="addTag">
+            <ul v-if="tags.length > 0">
+                <li v-for="(tag, index) in tags" :key="index" class="align-center tag">
+                    <span>{{tag}}</span>
                 </li>
+                <button class="remove" @click="removeTag()" type="button">
+                        Reset Tags
+                </button>
             </ul>
         </div>
         <div class="form-control">
@@ -75,9 +79,12 @@ export default {
         },
         addTag(){
             if(this.tagName.trim() !== ""){
-                this.tags.push(this.tagName)
+                this.tags.push(this.tagName.toLowerCase())
                 this.tagName = ""
             }
+        },
+        removeTag(){
+            this.tags = []
         }
     }
 }
@@ -90,10 +97,10 @@ ul{
     flex-wrap: wrap;
 }
 li{
-    background: var(--base-color);
+    color: var(--base-color);
+    border: 2px solid var(--base-color);
     border-radius: 10px;
-    color: var(--alt-color);
-    padding: 3px 5px;
+    padding: 2px 5px;
     margin: 1px 5px;
 }
 </style>

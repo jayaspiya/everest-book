@@ -16,3 +16,19 @@ export default {
     ]
 }
 </script>
+
+<style scoped>
+.book-grid{
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* Tablet View */
+@media only screen and (max-width: 768px) {
+.book-grid{
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+}
+</style>

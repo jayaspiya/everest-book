@@ -1,7 +1,6 @@
 <template>
 <div class="cover">
-    <img :src="book.imageUrl" :alt="book.title" loading="lazy" v-if="book.imageUrl">
-    <img :src="book.cover.front" :alt="book.title" loading="lazy" v-else>
+    <img :src="book.cover.front" :alt="book.title" loading="lazy">
     <div>
          <h3 class="title">
             {{book.title}}
@@ -100,5 +99,17 @@ img{
 }
 .author , .title{
     color: var(--base-color);
+}
+@media only screen and (max-width: 768px) {
+.cover{
+    padding: 5px;
+    margin: 5px;
+    max-width: 150px;
+}
+img{
+    height:200px;
+    width: 125px;
+    margin: 0 10px;
+}
 }
 </style>

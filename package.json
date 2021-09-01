@@ -13,6 +13,7 @@
     "mosha-vue-toastify": "^1.0.19",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
+    "vue-unicons": "^3.2.1",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
