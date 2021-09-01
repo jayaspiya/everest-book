@@ -129,7 +129,6 @@ const routes = [
         path: "upload-cover/:id",
         name: "UploadCover",
         component: UploadCover,
-        props: true,
       },
       {
         path: "edit/:id",

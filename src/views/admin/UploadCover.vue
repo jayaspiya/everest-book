@@ -48,7 +48,8 @@ export default {
       const formData = new FormData();
       const imagefile = this.file;
       formData.append("cover", imagefile);
-      const uri  = "/book/cover/"+ this.$router.params.id
+      const id = this.$route.params.id
+      const uri  = "/book/cover/"+ id
       console.log(uri)
       const res = await api.put(uri,formData, {
         headers: {
