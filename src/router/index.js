@@ -75,6 +75,11 @@ const routes = [
     beforeEnter: userGuard,
   },
   {
+    path: "/view/:id",
+    name: "Book",
+    component: Book,
+  },
+  {
     path: "/admin",
     name: "Admin",
     component: Admin,
@@ -102,11 +107,6 @@ const routes = [
         props: true,
       },
     ],
-  },
-  {
-    path: "/:id",
-    name: "Book",
-    component: Book,
   },
 ]
 

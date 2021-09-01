@@ -9,7 +9,7 @@
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
         <div class="flex">
-            <router-link :to="book._id">
+            <router-link :to="{ name: 'Book', params: { id: book._id }}">
                 <button>View</button>
             </router-link>
             <button @click="addItem" :disabled="btnDisabled" v-if="isAuth">{{btnText}}</button>
