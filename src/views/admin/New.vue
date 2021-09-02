@@ -73,7 +73,13 @@ export default {
                 releasedYear: this.releasedYear,
                 tags: this.tags
             }
-            const res = await api.post("book/", book)
+            const token = localStorage.getItem("token")
+            const opts = {
+                headers: {
+                    'Authorization': "Bearer " +token
+                }
+            }
+            const res = await api.post("book/", book, opts)
             this.$router.push("/")
             Toast(res.data.message).show()
         },

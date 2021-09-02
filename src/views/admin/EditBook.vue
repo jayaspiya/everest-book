@@ -2,7 +2,7 @@
   <base-card>
   <h2>Edit Book</h2>
     <base-spinner v-if="isloading"></base-spinner>
-    <form v-else>
+    <form v-else @submit.prevent="updateBook">
         <div class="form-control">
             <label for="title">Title</label>
             <input type="text" name="title" autocomplete="off" v-model="title" required>
@@ -85,8 +85,11 @@ export default {
         }
     },
     methods:{
-        async addBook(){
+        async updateBook(){
+            const isConfirmed = confirm("Do you want to update the book?")
+            if(isConfirmed){
             const book = {
+                _id: this.id,
                 title: this.title,
                 author: this.author,
                 isbn: this.isbn,
@@ -95,9 +98,22 @@ export default {
                 releasedYear: this.releasedYear,
                 tags: this.tags
             }
-            const res = await api.post("book/", book)
-            this.$router.push("/")
-            Toast(res.data.message).show()
+            const token = localStorage.getItem("token")
+            const opts = {
+                headers: {
+                    'Authorization': "Bearer " +token
+                }
+            }
+            const res = await api.put("book/", book, opts)
+            if(res.data.success){
+              this.$router.push("/")
+              const toast = new Toast(res.data.message)
+              toast.show()
+            }else{
+              const toast = new Toast(res.data.message, "", "danger")
+              toast.show()
+            }
+            }
         },
         addTag(){
             if(this.tagName.trim() !== ""){
@@ -112,7 +128,13 @@ export default {
           const isConfirmed = confirm("Do you want to delete the book?")
           if(isConfirmed){
             this.isloading = true
-            const res = await api.delete("book/"+this.id)
+            const token = localStorage.getItem("token")
+            const opts = {
+                headers: {
+                    'Authorization': "Bearer " +token
+                }
+            }
+            const res = await api.delete("book/"+this.id, opts)
             this.isloading = false
             if(res.data.success){
               const toast = new Toast(res.data.message)

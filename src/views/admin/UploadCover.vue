@@ -50,12 +50,14 @@ export default {
       formData.append("cover", imagefile);
       const id = this.$route.params.id
       const uri  = "/book/cover/"+ id
-      console.log(uri)
-      const res = await api.put(uri,formData, {
+      const token = localStorage.getItem("token")
+      const opts = {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': 'multipart/form-data',
+          'Authorization': "Bearer " +token
         }
-      })
+      }
+      const res = await api.put(uri,formData, opts)
       if(res.data.success){
         const toast = new Toast(res.data.message)
         toast.show()
