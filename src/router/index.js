@@ -14,6 +14,7 @@ import EditBook from "../views/admin/EditBook.vue"
 import Dashboard from "../views/admin/Dashboard.vue"
 import MissingCovers from "../views/admin/MissingCovers.vue"
 import UploadCover from "../views/admin/UploadCover.vue"
+import RegisterAdmin from "../views/admin/RegisterAdmin.vue"
 
 function adminGuard(to, from, next) {
   let isAuthenticated = false
@@ -114,6 +115,11 @@ const routes = [
         path: "new",
         name: "New",
         component: New,
+      },
+      {
+        path: "register-admin",
+        name: "RegisterAdmin",
+        component: RegisterAdmin,
       },
       {
         path: "dashboard",

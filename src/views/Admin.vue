@@ -12,6 +12,9 @@
         <li>
           <router-link to="/admin/missing-covers">Missing Covers</router-link>
         </li>
+        <li>
+          <router-link to="/admin/register-admin">Register Admin</router-link>
+        </li>
       </ul>
     </nav>
     <router-view></router-view>
@@ -39,4 +42,8 @@ nav.altnav a.router-link-active
   background:var(--background);
   color: var(--base-color);
 }
+.altnav ul{
+  flex-wrap: wrap;
+}
+
 </style>

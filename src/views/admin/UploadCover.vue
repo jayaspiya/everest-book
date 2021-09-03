@@ -1,6 +1,7 @@
 ;<template>
   <h3>Upload Cover</h3>
-  <div class="center">
+  <base-spinner v-if="isloading"></base-spinner>
+  <div class="center" v-else>
      <div v-if="!image">
     <h2>Select an image</h2>
     <input type="file" @change="onFileChange">
@@ -23,7 +24,8 @@ export default {
     return {
       image: '',
       file: '',
-      id: this.$store.getters.intent
+      id: this.$store.getters.intent,
+      isloading: false
     }
   },
   methods: {
@@ -57,8 +59,10 @@ export default {
           'Authorization': "Bearer " +token
         }
       }
-      const res = await api.put(uri,formData, opts)
+      this.isloading = true
+      const res = await api.patch(uri,formData, opts)
       if(res.data.success){
+        this.isloading = false
         const toast = new Toast(res.data.message)
         toast.show()
         this.$router.go(-1)

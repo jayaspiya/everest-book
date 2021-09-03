@@ -62,7 +62,7 @@ nav > ul{
   list-style: none;
 }
 nav li{
-  margin: 0 10px;
+  margin: 5px 10px;
 }
 /* Trasition */
 .route-enter-from {
@@ -140,6 +140,65 @@ button:hover{
 .form-control input:focus{
         border: 2px solid var(--base-color);
 }
+
+/* Form Control */
+
+/* Custom Checkbox */
+.custom-checkbox {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 25px;
+  user-select: none;
+}
+
+.custom-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.custom-checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: var(--base-color);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+/* Custom Checkbox */
 
 /* Tablet View */
 /* @media only screen and (max-width: 768px) {
