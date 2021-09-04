@@ -37,6 +37,9 @@
         </div>
       </div>
     <h2>Reviews</h2>
+    <base-card>
+        <ReviewForm/>
+    </base-card>
     <the-review v-for="review in reviews" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id"></the-review>
 </div>
 </template>
@@ -45,10 +48,12 @@ import api from "../utils/api.js"
 import Toast from '../utils/Toast.js'
 import BookMockup from "../components/BookMockup.vue"
 import TheReview from "../components/TheReview.vue"
+import ReviewForm from "../components/ReviewForm.vue"
 export default {
     components:{
         BookMockup,
-        TheReview
+        TheReview,
+        ReviewForm
     },
     data(){
         return{
