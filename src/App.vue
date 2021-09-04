@@ -85,7 +85,7 @@ body{
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-h1, h2, h3{
+h1, h2, h3, h4{
   color: var(--base-color);
 }
 main{
@@ -199,6 +199,30 @@ button:hover{
   transform: rotate(45deg);
 }
 /* Custom Checkbox */
+
+/* Star Rating */
+.rating {
+color: #b7b7b7;
+}
+.rating .list {
+padding: 0;
+}
+.rating-input .list:hover .star {
+color: #ffe100;
+}
+.rating .list .star {
+display: inline-block;
+font-size: 20px;
+transition: all 0.2s ease-in-out;
+cursor: pointer;
+}
+.rating .list .star:hover ~ .star:not(.active) {
+color: inherit;
+}
+.rating .list .star.active {
+color: #ffe100;
+}
+/* Star Rating */
 
 /* Tablet View */
 /* @media only screen and (max-width: 768px) {

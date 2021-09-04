@@ -1,4 +1,5 @@
 ;<template>
+<div class="center">
   <base-card>
   <div class="auth-form">
       <div class="image-cover">
@@ -9,6 +10,7 @@
       </div>
   </div>
   </base-card>
+</div>
 </template>
 
 <style scoped>

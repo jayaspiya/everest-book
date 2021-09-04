@@ -14,7 +14,7 @@
      0 22px 40px rgba(0, 0, 0, 0.019)
 ;
     padding: 1rem;
-    margin: 2rem auto;
+    margin: 1rem;
     max-width: 60%;
 }
 /* Tablet View */
