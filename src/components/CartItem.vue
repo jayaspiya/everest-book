@@ -5,9 +5,9 @@
     </h3>
     <p class="author">{{book.author}}</p>
     <p class="price">{{book.price}}</p>
-    <div class="flex">
+    <div class="align-center">
     <button @click="increament">+</button>
-    <p>{{quantity}}</p>
+    <p class="quantity">{{quantity}}</p>
     <button @click="decreament">-</button>
     </div>
     </base-card>
@@ -38,3 +38,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.quantity{
+    margin: 0 10px;
+}
+</style>

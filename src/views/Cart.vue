@@ -2,11 +2,8 @@
   <h3>Cart</h3>
   <base-spinner v-if="isloading"></base-spinner>
   <div v-else>
-      <ul>
-          <li v-for="book in orderBook" :key="book._id">{{book}}</li>
-      </ul>
       <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
-      <button>Checkout</button>
+      <button @click="checkout">Checkout</button>
   </div>
 </template>
 <script>
@@ -46,6 +43,11 @@ export default {
             cartBooks:[],
             orderBook: [],
             isloading: true
+        }
+    },
+    methods:{
+        checkout(){
+            console.log(this.orderBook)
         }
     }
 }
