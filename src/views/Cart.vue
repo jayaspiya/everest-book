@@ -1,9 +1,11 @@
 ;<template>
   <h3>Cart</h3>
   <base-spinner v-if="isloading"></base-spinner>
-  <div v-else>
-      <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
-      <button @click="checkout">Checkout</button>
+  <div v-else >
+        <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
+      <div class="center ">
+        <button @click="checkout" class="btnCheckout">Checkout</button>
+      </div>
   </div>
 </template>
 <script>
@@ -52,3 +54,9 @@ export default {
     }
 }
 </script>
+<style scoped>
+.btnCheckout{
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+</style>

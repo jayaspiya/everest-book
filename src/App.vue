@@ -36,8 +36,10 @@ export default {
 /* Use Variable */
 :root {
   --base-color: #2B7498;
-  --alt-color: #ffffff;
-  --background: #f5f5f5;
+  --alt-color: #f5f5f5;
+  --background: #ffffff;
+  --danger: #dc3545;
+  --blue: #007bff;
 }
 
 nav a{
