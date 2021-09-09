@@ -34,16 +34,30 @@
 </template>
 
 <script>
+import api from "../utils/api.js"
 export default {
-  created () {
+  async created () {
     window.addEventListener('scroll', this.handleScroll);
     const token = localStorage.getItem("token")
     const userType = localStorage.getItem("userType")
-    if(token && token != "" ){
-      this.isAuth = true
+    if(token){
+    const res = await api.get("/user/profile",{
+        headers: {
+            'Authorization': "Bearer " + token
+        }
+    })
+    if(res.data.success){
+      if(token && token != "" ){
+        this.isAuth = true
+      }
+      if(userType && userType === "ADMIN" ){
+        this.isAdmin = true
+      }
+      localStorage.setItem("user",res.data.data._id)
     }
-    if(userType && userType === "ADMIN" ){
-      this.isAdmin = true
+    else{
+      this.logoutUser()
+    }
     }
   },
   unmounted () {

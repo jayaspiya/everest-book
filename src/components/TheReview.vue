@@ -21,7 +21,7 @@
         <input type="text" placeholder="Type your review here" required v-model="editDescription">
     </div>
     <p v-else>{{description}}</p>
-    <button @click="toggleEditMode">{{editText}}</button>
+    <button @click="toggleEditMode" v-if="isUserSame">{{editText}}</button>
     <button v-if="editMode" class="btnUpdate">Update Review</button>
 </base-card>
 </template>
@@ -31,12 +31,16 @@ export default {
     components:{
         StarRating
     },
+    created(){
+        this.userId = localStorage.getItem("user")
+    },
     data(){
         return {
             editMode: false,
             editDescription: "",
             editRating: 1,
-            editText: "Edit"
+            editText: "Edit",
+            userId: ""
         }
     },
     methods:{
@@ -53,6 +57,12 @@ export default {
         },
         setEditRating(event){
             this.editRating = event.target.value
+        },
+        
+    },
+    computed:{
+        isUserSame(){
+            return this.userId === this.user._id
         }
     },
     props:["user", "rating", "description"]
