@@ -1,6 +1,7 @@
 <template>
+<div v-if="!isDeleted">
     <base-card>
-    <div class="cart">
+    <div class="cart" >
         <div class="desc">
             <h3 class="title">
                 {{book.title}}
@@ -16,7 +17,7 @@
             <button class="btnView">
                 <router-link :to="'/view/'+book._id">View</router-link>
             </button>
-            <button class="btnDelete">
+            <button class="btnDelete" @click="deleteItem">
                 Delete
             </button>
             </div>
@@ -27,8 +28,11 @@
         </div>
     </div>
     </base-card>
+    </div>
 </template>
 <script>
+import api from "../utils/api.js"
+import Toast from "../utils/Toast.js"
 export default {
     props:[
         "book",
@@ -37,7 +41,8 @@ export default {
     inject:["orderBookProvide"],
     data(){
         return{
-            quantity: 1
+            quantity: 1,
+            isDeleted: false
         }
     },
     methods:{
@@ -51,6 +56,25 @@ export default {
             this.orderBookProvide[this.index].qty = this.quantity
             }
         },
+        async deleteItem(){
+            const isConfirmed = confirm("Do you want to delete the book from your cart?")
+            if(isConfirmed){
+                const token = localStorage.getItem("token")
+                const url = "/user/deletefromcart/"+this.book._id
+                const response = await api.delete(url,
+                    {
+                        headers: {
+                            'Authorization': `Bearer ${token}` 
+                        }
+                    }
+                )
+                if(response.data.success){
+                    this.isDeleted = true
+                    const toast = new Toast(response.data.message)
+                    toast.show()
+                }
+            }
+        }
     }
 }
 </script>
@@ -87,5 +111,8 @@ img{
 }
 .btns{
     margin: 5px 0;
+}
+.hide{
+    display: none;
 }
 </style>
