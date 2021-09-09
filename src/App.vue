@@ -40,6 +40,7 @@ export default {
   --background: #ffffff;
   --danger: #dc3545;
   --blue: #007bff;
+  --success: #28a745;
 }
 
 nav a{

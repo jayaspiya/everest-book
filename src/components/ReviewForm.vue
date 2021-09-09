@@ -1,35 +1,39 @@
 <template>
     <form @submit.prevent="submit">
         Add New Review
-        <star-rating-input :grade="defaultStar" @setStar="getStar"></star-rating-input>
-        <input type="text" placeholder="Type your review here" v-model="description">
+        <div>
+            Rating: 
+        <select @change="setRating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        </div>
+        <input type="text" placeholder="Type your review here" v-model="description" required>
         <button>Submit</button>
     </form>
 </template>
 <script>
 import api from "../utils/api.js"
 import Toast from "../utils/Toast.js"
-import StarRatingInput from "./UI/StarRatingInput.vue"
 export default {
-    components:{
-        StarRatingInput
-    },
     data(){
         return{
-            stars: 1,
-            defaultStar: 1,
+            rating: 1,
             description: ""
         }
     },
     methods:{
-        getStar(n){
-            this.stars = n
+        setRating(event){
+            this.rating = event.target.value
         },
         async submit(){
             const review = {
                 book: this.$route.params.id,
                 description: this.description,
-                rating: this.stars
+                rating: this.rating
             }
             const token = localStorage.getItem("token")
             const opts = {
@@ -39,11 +43,11 @@ export default {
             }
             const res = await api.post("/review",review, opts)
             if(res.data.success){
-                // TODO: Live COmment Add
+                // TODO: Live Comment Add
                 const toast = new Toast(res.data.message)
                 toast.show()
                 this.description = ""
-                this.stars = 1
+                this.rating = 1
                 this.defaultStar = 1
             }
             else{
