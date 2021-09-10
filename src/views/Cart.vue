@@ -55,7 +55,7 @@ export default {
         if(res.data.success){
             this.cartBooks = res.data.data
             this.cartBooks.forEach(book => {
-                this.orderBook.push({_id: book._id, qty: 1, price: book.price})
+                this.orderBook.push({bookId: book._id, qty: 1, price: book.price})
             });
         }
         else{
