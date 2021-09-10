@@ -13,7 +13,7 @@
         <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
         <tr>
             <td></td>
-            <td></td>
+            <td class="cart-image-container"></td>
             <td><strong>Total</strong></td>
             <td>{{totalQuantity}}</td>
             <td class="price">{{totalAmount}}</td>
@@ -23,7 +23,6 @@
         <button @click="checkout" class="btnCheckout">Checkout</button>
       </div>
   </div>
-  {{orderBook}}
 </template>
 <script>
 import api from "../utils/api.js"
