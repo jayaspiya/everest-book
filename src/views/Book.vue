@@ -40,7 +40,7 @@
     <base-card>
         <ReviewForm/>
     </base-card>
-    <the-review v-for="review in reviews" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id"></the-review>
+    <the-review v-for="review in reviews" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id"></the-review>
 </div>
 </template>
 <script>

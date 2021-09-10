@@ -225,16 +225,27 @@ color: inherit;
 .rating .list .star.active {
 color: #ffe100;
 }
-/* Star Rating */
-
-/* Tablet View */
-/* @media only screen and (max-width: 768px) {
+/* Table */
+table {
+  border-collapse: collapse;
+  width: 100%;
 }
- */
+
+td, th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
 /* Mobile View */
 @media only screen and (max-width: 576px) {
   main{
     padding: 0 2rem;
+  }
+  table .cart-image-container{
+    display: none;
   }
 }
  

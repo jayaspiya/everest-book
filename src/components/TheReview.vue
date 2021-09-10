@@ -22,10 +22,11 @@
     </div>
     <p v-else>{{description}}</p>
     <button @click="toggleEditMode" v-if="isUserSame">{{editText}}</button>
-    <button v-if="editMode" class="btnUpdate">Update Review</button>
+    <button v-if="editMode" class="btnUpdate" @click="updateReview">Update Review</button>
 </base-card>
 </template>
 <script>
+import api from "../utils/api.js"
 import StarRating from "../components/UI/StarRating.vue"
 export default {
     components:{
@@ -58,6 +59,24 @@ export default {
         setEditRating(event){
             this.editRating = event.target.value
         },
+        async updateReview(){
+            const isConfirmed = confirm("Do you want to update the book?")
+            if(isConfirmed){
+                const token = localStorage.getItem("token")
+                const opts = {
+                    headers: {
+                        'Authorization': "Bearer " +token
+                    }
+                }
+                const res = await api.put("/review",{
+                    id: this.id,
+                    description: this.editDescription,
+                    rating: this.editRating
+                }, opts)
+                console.log(res)
+                this.toggleEditMode()
+            }
+        }
         
     },
     computed:{
@@ -65,7 +84,7 @@ export default {
             return this.userId === this.user._id
         }
     },
-    props:["user", "rating", "description"]
+    props:["user", "rating", "description" ,"id"]
 }
 </script>
 

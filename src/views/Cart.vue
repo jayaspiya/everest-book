@@ -2,7 +2,16 @@
   <h3>Cart</h3>
   <base-spinner v-if="isloading"></base-spinner>
   <div v-else >
+      <table>
+        <tr>
+            <th>Book</th>
+            <th class="cart-image-container">Image</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
         <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
+      </table>
       <div class="center ">
         <button @click="checkout" class="btnCheckout">Checkout</button>
       </div>
@@ -59,4 +68,5 @@ export default {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
+
 </style>

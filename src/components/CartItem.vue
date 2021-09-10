@@ -1,34 +1,37 @@
 <template>
-<div v-if="!isDeleted">
-    <base-card>
-    <div class="cart" >
-        <div class="desc">
-            <h3 class="title">
-                {{book.title}}
+    <tr v-if="!isDeleted"> 
+        <td>
+            <h3>
+            {{book.title}}
             </h3>
-            <p class="author">{{book.author}}</p>
-            <p class="price">{{book.price}}</p>
-            <div class="align-center">
+            <div class="btns">
+            <button class="btnView">
+                <router-link :to="'/view/'+book._id">
+                    <i class="far fa-eye"></i>
+                </router-link>
+            </button>
+            <button class="btnDelete" @click="deleteItem">
+                <i class="fas fa-times-circle"></i>
+            </button>
+            </div>
+
+        </td>
+        <td class="cart-image-container"><div class="flex">
+            <img :src="book.cover.front"/>
+            <img :src="book.cover.back"/>
+        </div></td>
+        <td>{{book.price}}</td>
+        <td>
+            <div class="quantity-container">
                 <button @click="increament">+</button>
                 <p class="quantity">{{quantity}}</p>
                 <button @click="decreament">-</button>
             </div>
-            <div class="btns">
-            <button class="btnView">
-                <router-link :to="'/view/'+book._id">View</router-link>
-            </button>
-            <button class="btnDelete" @click="deleteItem">
-                Delete
-            </button>
-            </div>
-        </div>
-        <div>
-            <img :src="book.cover.front"/>
-            <img :src="book.cover.back"/>
-        </div>
-    </div>
-    </base-card>
-    </div>
+        </td>
+        <td >
+            {{total}}
+        </td>
+    </tr>
 </template>
 <script>
 import api from "../utils/api.js"
@@ -43,6 +46,11 @@ export default {
         return{
             quantity: 1,
             isDeleted: false
+        }
+    },
+    computed:{
+        total(){
+            return this.quantity * this.book.price
         }
     },
     methods:{
@@ -80,18 +88,35 @@ export default {
 </script>
 
 <style scoped>
-.quantity{
+table .quantity{
     margin: 0 10px;
 }
-img{
+table img{
     height: 130px;
 }
-.cart{
-    display: flex;
-    justify-content: space-between;
+/* Tablet View */
+@media only screen and (max-width: 768px) {
+  table img{
+    height: 80px;
 }
-.desc{
-    margin: auto 0 ;
+table img:nth-child(2){
+    display: none;
+}
+.quantity-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+}
+/* Mobile View */
+@media only screen and (max-width: 576px) {
+    table img{
+        display: none;
+    }
+}
+.quantity-container{
+    display: flex;
+    align-items: center;
 }
 .btnView a{
     color: white;
@@ -106,8 +131,9 @@ img{
     border: 1px solid  var(--danger);
 }
 .btnDelete:hover{
-    background: var(--alt-color);
-    color: var(--danger);
+        background: var(--danger);
+    border: 1px solid  var(--danger);
+    color: #ffffff;
 }
 .btns{
     margin: 5px 0;
