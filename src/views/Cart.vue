@@ -46,10 +46,9 @@ export default {
         }
     },
     async created(){
-        const token = localStorage.getItem("token")
         const res = await api.get("/user/cart",{
             headers: {
-                'Authorization': "Bearer " +token
+                'Authorization': "Bearer " + localStorage.getItem("token")
             }
         })
         this.isloading = false
@@ -72,8 +71,21 @@ export default {
         }
     },
     methods:{
-        checkout(){
-            console.log(this.orderBook)
+        async checkout(){
+            const opts = {
+                headers: {
+                    'Authorization': "Bearer " + localStorage.getItem("token")
+                }
+            }
+            const res = await api.post("/order",{orderBook: this.orderBook},opts)
+            if(res.data.success){
+                const toast = new Toast(res.data.message)
+                toast.show()
+            }
+            else{
+                const toast = new Toast(res.data.message,"", "danger" )
+                toast.show()
+            }
         }
     },
     computed:{
