@@ -35,14 +35,17 @@ export default {
 }
 /* Use Variable */
 :root {
-  --base-color: #2B7498;
+  --base-color: #0892a5;
   --alt-color: #f5f5f5;
   --background: #ffffff;
   --danger: #dc3545;
   --blue: #007bff;
   --success: #28a745;
 }
-
+body{
+  color: #3d3c3c;
+  font-family: 'Kaisei HarunoUmi', serif;
+}
 nav a{
     border: 2px var(--base-color) solid;
     padding: 2px 10px;

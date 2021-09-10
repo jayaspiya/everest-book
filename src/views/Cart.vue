@@ -11,11 +11,19 @@
             <th>Total</th>
         </tr>
         <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
+        <tr>
+            <td></td>
+            <td></td>
+            <td><strong>Total</strong></td>
+            <td>{{totalQuantity}}</td>
+            <td class="price">{{totalAmount}}</td>
+        </tr>
       </table>
       <div class="center ">
         <button @click="checkout" class="btnCheckout">Checkout</button>
       </div>
   </div>
+  {{orderBook}}
 </template>
 <script>
 import api from "../utils/api.js"
@@ -41,7 +49,7 @@ export default {
         if(res.data.success){
             this.cartBooks = res.data.data
             this.cartBooks.forEach(book => {
-                this.orderBook.push({_id: book._id, qty: 1})
+                this.orderBook.push({_id: book._id, qty: 1, price: book.price})
             });
         }
         else{
@@ -53,12 +61,36 @@ export default {
         return{
             cartBooks:[],
             orderBook: [],
-            isloading: true
+            isloading: true,
         }
     },
     methods:{
         checkout(){
             console.log(this.orderBook)
+        }
+    },
+    computed:{
+        totalQuantity(){
+            const qtyList = this.orderBook.map((order)=>{
+                return order.qty
+            })
+            const totalQty = qtyList.reduce((total, qty)=>{
+                return total + qty
+            })
+            return totalQty
+        },
+        totalAmount(){
+            const rateList = this.orderBook.map((order)=>{
+                return order.price
+            })
+            const qtyList = this.orderBook.map((order)=>{
+                return order.qty
+            })
+            let total = 0
+            qtyList.forEach((qty, index) => {
+                total += qty * rateList[index]
+            });
+            return total
         }
     }
 }
@@ -66,7 +98,9 @@ export default {
 <style scoped>
 .btnCheckout{
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    margin: 1rem 0;
 }
-
+.price::before{
+    content: "Rs."
+}
 </style>
