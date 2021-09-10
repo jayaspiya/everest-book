@@ -1,7 +1,13 @@
 ;<template>
-  <h3>Cart</h3>
+  <h2>Cart</h2>
   <base-spinner v-if="isloading"></base-spinner>
   <div v-else >
+      <div v-if="isCartEmpty">
+            <h3>
+                No Item on Cart
+            </h3>
+        </div>
+        <div v-else>
       <table>
         <tr>
             <th>Book</th>
@@ -10,6 +16,7 @@
             <th>Quantity</th>
             <th>Total</th>
         </tr>
+        
         <cart-item v-for="(book,index) in cartBooks" :key="book._id" :index="index" :book="book"></cart-item>
         <tr>
             <td></td>
@@ -21,6 +28,7 @@
       </table>
       <div class="center ">
         <button @click="checkout" class="btnCheckout">Checkout</button>
+      </div>
       </div>
   </div>
 </template>
@@ -70,26 +78,34 @@ export default {
     },
     computed:{
         totalQuantity(){
-            const qtyList = this.orderBook.map((order)=>{
-                return order.qty
-            })
-            const totalQty = qtyList.reduce((total, qty)=>{
-                return total + qty
-            })
+            let totalQty = 0
+            if(this.orderBook.length>0){
+                const qtyList = this.orderBook.map((order)=>{
+                    return order.qty
+                })
+                totalQty = qtyList.reduce((total, qty)=>{
+                    return total + qty
+                })
+            }
             return totalQty
         },
         totalAmount(){
-            const rateList = this.orderBook.map((order)=>{
-                return order.price
-            })
-            const qtyList = this.orderBook.map((order)=>{
-                return order.qty
-            })
-            let total = 0
-            qtyList.forEach((qty, index) => {
-                total += qty * rateList[index]
+            if(this.orderBook.length>0){
+                const rateList = this.orderBook.map((order)=>{
+                    return order.price
+                })
+                const qtyList = this.orderBook.map((order)=>{
+                    return order.qty
+                })
+                let total = 0
+                qtyList.forEach((qty, index) => {
+                    total += qty * rateList[index]
             });
-            return total
+            return total}
+            return 0
+        },
+        isCartEmpty(){
+            return this.cartBooks.length === 0
         }
     }
 }
