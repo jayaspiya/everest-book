@@ -72,7 +72,15 @@ export default {
         }
     },
     async mounted(){
-        const res = await api.get("book/view/"+ this.$route.params.id)
+        const token = localStorage.getItem("token")
+        let opts = {}
+        if(token){
+        opts = {
+            headers: {
+                'Authorization': "Bearer " + token
+            }
+        }}
+        const res = await api.get("book/view/"+ this.$route.params.id, opts)
         if(res.data.success){
             const book = res.data.data[0]
             this.title = book.title
