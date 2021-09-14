@@ -122,19 +122,7 @@ table img:nth-child(2){
     color: white;
     text-decoration: none;
 }
-.btnView{
-    background: var(--blue);
-    border: 1px solid  var(--blue);
-}
-.btnDelete{
-    background: var(--danger);
-    border: 1px solid  var(--danger);
-}
-.btnDelete:hover{
-        background: var(--danger);
-    border: 1px solid  var(--danger);
-    color: #ffffff;
-}
+
 .btns{
     margin: 5px 0;
 }

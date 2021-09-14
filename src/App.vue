@@ -152,6 +152,26 @@ table .text-center{
 
 /* Form Control */
 
+/* Custom Button */
+.btnView{
+    background: var(--blue);
+    border: 1px solid  var(--blue);
+}
+.btnView:hover{
+    background: var(--blue);
+    border: 1px solid  var(--blue);
+    color: #ffffff;
+}
+.btnDelete{
+    background: var(--danger);
+    border: 1px solid  var(--danger);
+}
+.btnDelete:hover{
+    background: var(--danger);
+    border: 1px solid  var(--danger);
+    color: #ffffff;
+}
+
 /* Custom Checkbox */
 .custom-checkbox {
   display: flex;
