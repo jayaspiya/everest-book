@@ -2,14 +2,23 @@
   <h3>Update Cover</h3>
   <base-spinner v-if="isloading"></base-spinner>
 <div v-else>
-    <ul>
-        <li v-for="book in books" :key="book._id">
-            {{book.title}}
+    <table>
+        <thead>
+            <th>Book</th>
+            <th>Action</th>
+        </thead>
+    
+        <tr v-for="book in books" :key="book._id" class="mx-10">
+            <td>{{book.title}}</td>
+            <td>
             <router-link :to="{ name: 'UploadCover', params: { id: book._id }}">
                 <button>Upload Cover</button>
             </router-link>
-        </li>
-    </ul>
+            </td>
+
+        </tr>
+        </table>
+
 </div>
 </template>
 <script>
@@ -35,3 +44,8 @@ export default {
     },
 }
 </script>
+<style scoped>
+.mx-10{
+    margin: 5px 0;
+}
+</style>

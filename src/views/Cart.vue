@@ -1,7 +1,7 @@
 ;<template>
   <h2>Cart</h2>
   <base-spinner v-if="isloading"></base-spinner>
-  <div v-else >
+  <div v-else class="cart-container">
       <div v-if="isCartEmpty">
             <h3>
                 No Item on Cart
@@ -129,5 +129,8 @@ export default {
 }
 .price::before{
     content: "Rs."
+}
+.cart-container{
+    min-width: 500px;
 }
 </style>

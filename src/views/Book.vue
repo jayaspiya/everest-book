@@ -1,7 +1,16 @@
 ;<template>
   <base-spinner v-if="isloading"></base-spinner>
 <div v-else>
-  <h2>{{title}}</h2>
+    <div class="justify-between">
+            <h2>{{title}}</h2>
+            <div v-if="isAuth">
+                <router-link :to="{ name: 'EditBook', params: { id: id }}" v-if="isAdmin">
+                    <button>Edit</button>
+                </router-link>
+                <button @click="addItem" :disabled="btnDisabled" v-else >{{btnText}}</button>
+
+            </div>
+        </div>
   <div class="flex">
     <book-mockup :backCover="backCover" :frontCover="frontCover" :sideCover="sideCover"/>
     <div>
@@ -33,7 +42,7 @@
         <p>
         {{synopsis}}
         </p>
-
+        
         </div>
       </div>
     <h2>Reviews</h2>
@@ -57,6 +66,7 @@ export default {
     },
     data(){
         return{
+            id:"",
             title: "",
             author:"",
             isbn: "",
@@ -68,7 +78,12 @@ export default {
             sideCover:"",
             backCover:"",
             reviews: [],
-            isloading : true
+            isloading : true,
+            btnText: "Add to cart",
+            btnDisabled: false,
+            isAuth: false,
+            isAdmin: false
+        
         }
     },
     async mounted(){
@@ -83,6 +98,7 @@ export default {
         const res = await api.get("book/view/"+ this.$route.params.id, opts)
         if(res.data.success){
             const book = res.data.data[0]
+            this.id = book._id
             this.title = book.title
             this.author = book.author
             this.isbn = book.isbn
@@ -99,6 +115,39 @@ export default {
         else{
             Toast("Invalid Result").show()
         }
+        const isAdmin = localStorage.getItem("userType") === "ADMIN"
+        if(token && token != ""){
+            this.isAuth = true
+        }
+        if(isAdmin){
+            this.isAdmin = true
+        }
+    },
+    methods:{
+        async addItem(){
+            const token = localStorage.getItem("token")
+            const url = "/user/addtocart/"+this.book._id
+            this.btnText = "Adding"
+            const res = await api.post(url,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}` 
+                    }
+                }
+            )
+            if(res.data.success){
+                this.btnText = "In Cart"
+                this.btnDisabled = true
+                const toast  = new Toast(res.data.message)
+                toast.show()
+            }
+            else{
+                this.btnText = "Add to Cart"
+                const toast  = new Toast(res.data.message,"", "danger")
+                toast.show()
+            }
+            
+        },
     }
 }
 </script>

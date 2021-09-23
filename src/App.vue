@@ -1,19 +1,20 @@
 ;<template>
   <TheHeader/>
-  {{token}}
   <main>
     <transition name="route" mode="out-in">
       <router-view />
     </transition>
   </main>
+  <TheFooter/>
 </template>
 
 <script>
 import "mosha-vue-toastify/dist/style.css"
 import TheHeader from "./components/TheHeader.vue"
+import TheFooter from "./components/TheFooter.vue"
 export default {
   components:{
-    TheHeader
+    TheHeader,TheFooter
   },
   created(){
     this.$store.commit("setToken", localStorage.getItem("accessToken"))
@@ -123,6 +124,10 @@ button:hover{
   display: flex;
   align-items: center;
 }
+.justify-between{
+  display: flex;
+  justify-content: space-between;
+}
 table .text-center{
   text-align: center;
 }
@@ -149,7 +154,13 @@ table .text-center{
 .form-control input:focus{
         border: 2px solid var(--base-color);
 }
-
+input{
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+}
 /* Form Control */
 
 /* Custom Button */
