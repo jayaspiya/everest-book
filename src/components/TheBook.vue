@@ -1,22 +1,26 @@
 <template>
 <div class="cover">
     <img :src="book.cover.front" :alt="book.title" loading="lazy">
-    <div>
+    <div class="detail">
+        <div class="desc">
          <h3 class="title">
             {{book.title}}
         </h3>
         <p class="author">{{book.author}}</p>
         <p class="price">{{book.price}}</p>
-        <div class="flex">
+        </div>
+
+        <div class="flex action">
             <router-link :to="{ name: 'Book', params: { id: book._id }}">
                 <button>View</button>
             </router-link>
             <div v-if="isAuth">
                 <router-link :to="{ name: 'EditBook', params: { id: book._id }}" v-if="isAdmin">
-                    <button>Edit</button>
+                    <button>
+                        <i class="far fa-edit"></i>Edit Book</button>
                 </router-link>
-                <button @click="addItem" :disabled="btnDisabled" v-else >{{btnText}}</button>
-
+                <button @click="addItem" :disabled="btnDisabled" v-else >
+                <i class="fas fa-shopping-bag"></i>{{btnText}}</button>
             </div>
         </div>
 
@@ -83,33 +87,39 @@ export default {
 }
 .cover{
     padding: 10px;
-    margin: 10px;
     max-width: 185px;
-    background: var(--alt-color);
+    height: 335px;
     width: fit-content;
+    border: 1px solid rgb(146, 146, 146);
     cursor: pointer;
+    transition: .2s all ease-out;
+}
+.cover:hover{
+    border: 1px solid #222222;
 }
 img{
     height:200px;
     width: 125px;
     margin: 0 20px;
 }
+.detail{
+    position: relative;
+    height: 105px;
+    overflow: hidden;
+}
+.cover:hover .action{
+        bottom: 0;
+}
+.action{
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    transition: all .2s ease-out;
+}
 .price::before{
     content: "Rs.";
 }
 .author , .title{
     color: var(--base-color);
-}
-@media only screen and (max-width: 768px) {
-.cover{
-    padding: 5px;
-    margin: 5px;
-    max-width: 150px;
-}
-img{
-    height:200px;
-    width: 125px;
-    margin: 0 10px;
-}
 }
 </style>

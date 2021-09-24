@@ -279,7 +279,7 @@ tr:nth-child(even) {
 /* Mobile View */
 @media only screen and (max-width: 576px) {
   main{
-    padding: 0 2rem;
+    padding: 0 1rem;
   }
   table .cart-image-container{
     display: none;

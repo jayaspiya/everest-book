@@ -95,6 +95,7 @@ export default {
 
 <style scoped>
 header{
+  z-index: 100;
     position: fixed;
     padding: 0 3rem;
     background: var(--background);
