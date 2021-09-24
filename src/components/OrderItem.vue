@@ -1,6 +1,6 @@
 ;<template>
   <tr>
-    <td>{{order._id}}</td>
+    <td>{{order._id.slice(-10)}}</td>
     <td>{{order.user.firstname}} {{order.user.lastname}}</td>
     <td>{{order.user.phone}}</td>
     <td>{{new Date(order.createdAt).toLocaleDateString()}}</td>
