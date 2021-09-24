@@ -1,6 +1,8 @@
 <template>
     <form @submit.prevent="submit">
-        Add New Review
+        <h3>
+            Add New Review
+        </h3>
         <div>
             Rating: 
         <select @change="setRating">
@@ -43,12 +45,12 @@ export default {
             const res = await api.post("/review/"+this.$route.params.id, review, opts)
             console.log(res)
             if(res.data.success){
-                // TODO: Live Comment Add
                 const toast = new Toast(res.data.message)
                 toast.show()
                 this.description = ""
                 this.rating = 1
                 this.defaultStar = 1
+                this.$emit("new-review")
             }
             else{
                 const toast = new Toast(res.data.message,"","danger")

@@ -1,5 +1,6 @@
 ;<template>
-<div class="center">
+<div class="center ">
+  <div class="w-60p">
   <base-card>
   <div class="auth-form">
       <div class="image-cover">
@@ -10,6 +11,7 @@
       </div>
   </div>
   </base-card>
+  </div>
 </div>
 </template>
 
@@ -27,6 +29,9 @@ img{
 }
 .form-cover{
     margin: 1rem;
+}
+.w-60p{
+  width: 60%;
 }
 @media only screen and (max-width: 768px) {
   .auth-form{

@@ -21,8 +21,10 @@
         <input type="text" placeholder="Type your review here" required v-model="editDescription">
     </div>
     <p v-else>{{description}}</p>
-    <button @click="toggleEditMode" v-if="isUserSame">{{editText}}</button>
     <button v-if="editMode" class="btnUpdate" @click="updateReview">Update Review</button>
+    <button v-if="editMode" class="btnDelete" @click="deleteReview">Delete Review</button>
+    <button @click="toggleEditMode" v-if="isUserSame"><i class="far fa-edit"  ></i>{{editText}}</button>
+
 </base-card>
 </template>
 <script>
@@ -33,7 +35,7 @@ export default {
         StarRating
     },
     created(){
-        this.userId = localStorage.getItem("user")
+        this.userId = localStorage.getItem("uid")
     },
     data(){
         return {
@@ -50,7 +52,7 @@ export default {
             this.editDescription = this.description
             this.editRating = this.rating
             if(this.editMode){
-                this.editText = "Exit Edit Mode"
+                this.editText = "Cancel"
             }
             else{
                 this.editText = "Edit"
@@ -68,13 +70,29 @@ export default {
                         'Authorization': "Bearer " +token
                     }
                 }
-                const res = await api.put("/review",{
-                    id: this.id,
+                const res = await api.put("/review/"+ this.id,{
                     description: this.editDescription,
                     rating: this.editRating
                 }, opts)
                 console.log(res)
                 this.toggleEditMode()
+                this.$emit("review-update")
+            }
+        },
+
+        async deleteReview(){
+            const isConfirmed = confirm("Do you want to delete the book?")
+            if(isConfirmed){
+                const token = localStorage.getItem("token")
+                const opts = {
+                    headers: {
+                        'Authorization': "Bearer " +token
+                    }
+                }
+                const res = await api.delete("/review/"+ this.id, opts)
+                console.log(res)
+                this.toggleEditMode()
+                this.$emit("review-update")
             }
         }
         
@@ -84,7 +102,8 @@ export default {
             return this.userId === this.user._id
         }
     },
-    props:["user", "rating", "description" ,"id"]
+    props:["user", "rating", "description" ,"id"],
+    emits: ["review-update"]
 }
 </script>
 

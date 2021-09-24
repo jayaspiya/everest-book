@@ -15,7 +15,7 @@
 ;
     padding: 1rem;
     margin: 1rem;
-    max-width: 60%;
+    max-width: 100%;
 }
 /* Tablet View */
 @media only screen and (max-width: 768px) {

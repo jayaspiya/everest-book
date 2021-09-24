@@ -43,6 +43,7 @@ export default {
       })
       if(res.data.success){
         localStorage.setItem("token",res.data.accessToken )
+        localStorage.setItem("uid",res.data.data._id )
         localStorage.setItem("userType","USER")
         window.location.reload()
         const toast = new Toast(res.data.message)

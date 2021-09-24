@@ -54,12 +54,15 @@
         <p>
         {{synopsis}}
         </p>
-        <h3>Reviews</h3>
-            <base-card v-if="isAuth">
-        <ReviewForm/>
+        <div class="justify-between">
+            <h3>Reviews</h3>
+            <button @click="toggleForm">{{writeReview? "Cancel":"Write Review"}}</button>
+        </div>
+            <base-card v-if="isAuth && writeReview">
+        <ReviewForm @new-review="getBook"/>
     </base-card>
-        <div class="review-container">
-    <the-review v-for="review in reviews.reverse()" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id"></the-review>
+        <div class="review-container" v-if="!writeReview">
+    <the-review v-for="review in reviews" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id" @review-update="getBook"></the-review>
         </div>
         </div>
       </div>
@@ -97,12 +100,42 @@ export default {
             btnText: "Add to cart",
             btnDisabled: false,
             isAuth: false,
-            isAdmin: false
-        
+            isAdmin: false,
+            writeReview: false
         }
     },
-    async mounted(){
-        const token = localStorage.getItem("token")
+    mounted(){
+        this.getBook()
+    },
+    methods:{
+        async addItem(){
+            const token = localStorage.getItem("token")
+            const url = "/user/addtocart/"+this.book._id
+            this.btnText = "Adding"
+            const res = await api.post(url,
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}` 
+                    }
+                }
+            )
+            if(res.data.success){
+                this.btnText = "In Cart"
+                this.btnDisabled = true
+                const toast  = new Toast(res.data.message)
+                toast.show()
+            }
+            else{
+                this.btnText = "Add to Cart"
+                const toast  = new Toast(res.data.message,"", "danger")
+                toast.show()
+            }
+        },
+        toggleForm(){
+            this.writeReview = !this.writeReview
+        },
+        async getBook(){
+            const token = localStorage.getItem("token")
         let opts = {}
         if(token){
         opts = {
@@ -138,32 +171,7 @@ export default {
         if(isAdmin){
             this.isAdmin = true
         }
-    },
-    methods:{
-        async addItem(){
-            const token = localStorage.getItem("token")
-            const url = "/user/addtocart/"+this.book._id
-            this.btnText = "Adding"
-            const res = await api.post(url,
-                {
-                    headers: {
-                        'Authorization': `Bearer ${token}` 
-                    }
-                }
-            )
-            if(res.data.success){
-                this.btnText = "In Cart"
-                this.btnDisabled = true
-                const toast  = new Toast(res.data.message)
-                toast.show()
-            }
-            else{
-                this.btnText = "Add to Cart"
-                const toast  = new Toast(res.data.message,"", "danger")
-                toast.show()
-            }
-            
-        },
+        }
     }
 }
 </script>
