@@ -8,6 +8,7 @@ import Login from "../views/Login.vue"
 import NoPage from "../views/NoPage.vue"
 import AdminLogin from "../views/AdminLogin.vue"
 import Cart from "../views/Cart.vue"
+import Order from "../views/Order.vue"
 import Book from "../views/Book.vue"
 import Profile from "../views/Profile.vue"
 import Admin from "../views/Admin.vue"
@@ -105,6 +106,12 @@ const routes = [
     path: "/cart",
     name: "Cart",
     component: Cart,
+    beforeEnter: userGuard,
+  },
+  {
+    path: "/order",
+    name: "Order",
+    component: Order,
     beforeEnter: userGuard,
   },
   {

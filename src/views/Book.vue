@@ -58,11 +58,11 @@
             <h3>Reviews</h3>
             <button @click="toggleForm">{{writeReview? "Cancel":"Write Review"}}</button>
         </div>
-            <base-card v-if="isAuth && writeReview">
-        <ReviewForm @new-review="getBook"/>
-    </base-card>
+        <base-card v-if="isAuth && writeReview">
+            <ReviewForm @new-review="getBook"/>
+        </base-card>
         <div class="review-container" v-if="!writeReview">
-    <the-review v-for="review in reviews" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id" @review-update="getBook"></the-review>
+            <the-review v-for="review in reviews" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id" @review-update="getBook"></the-review>
         </div>
         </div>
       </div>

@@ -19,7 +19,7 @@
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        <div v-else class="text-center">
+        <div v-else class="text-center" :class="status==='canceled'?'textDanger':'textSuccess'">
             {{status}}
         </div>
     </td>
@@ -99,5 +99,11 @@ p{
 }
 .text-center{
     text-align: center;
+}
+.textDanger{
+    color: var(--danger)
+}
+.textSuccess{
+    color: var(--success)
 }
 </style>

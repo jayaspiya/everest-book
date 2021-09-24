@@ -42,9 +42,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.orderTableContainer{
-  overflow-x:auto;
-}
-</style>

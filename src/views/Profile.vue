@@ -8,6 +8,9 @@
       <p><strong>Address: </strong>{{user.address}}</p>
       <p><strong>Total Reviews: </strong>{{user.reviews}}</p>
       <p><strong>Total Orders: </strong>{{user.orders}}</p>
+      <button>
+        <router-link to="/order"> View Order </router-link>
+      </button>
       <h3>Recently Viewed</h3>
       <recently-viewed :books="user.recentlyViewed"></recently-viewed>
   </div>

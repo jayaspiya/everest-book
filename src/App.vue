@@ -63,6 +63,13 @@ nav a.router-link-active
   background:var(--base-color);
   color: var(--alt-color);
 }
+button a{
+  color: #ffffff;
+  text-decoration: none;
+}
+button:hover a{
+  color: var(--base-color);
+}
 
 /* Nav */
 nav > ul{
@@ -113,6 +120,9 @@ button:hover{
   background-color: var(--alt-color);
   color: var(--base-color);
   border: 2px solid var(--base-color) 
+}
+.orderTableContainer{
+  overflow-x:auto;
 }
 .flex{
   display: flex;
