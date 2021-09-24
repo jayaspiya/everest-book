@@ -7,13 +7,16 @@
             {{book.title}}
         </h3>
         <p class="author">{{book.author}}</p>
-        <p v-if="book.discount>0">
+        <h4 v-if="book.quantity === 0">Out of Stock</h4>
+        <div v-else>
+            <p v-if="book.discount>0">
             <span class="price">Rs.{{book.price}}</span>
             <span class="discount" > Rs.{{(100+book.discount)*book.price/100}}</span>
         </p>
         <p v-else>
             <span class="price">Rs.{{book.price}}</span>
         </p>
+        </div>
         </div>
 
         <div class="flex action">

@@ -62,7 +62,6 @@
 
 <script>
 import api from "../../utils/api.js"
-import Toast from "../../utils/Toast.js"
 export default {
   async created(){
     const id = this.$route.params.id
@@ -97,10 +96,16 @@ export default {
         }
     },
     methods:{
-        async updateBook(){
-            const isConfirmed = confirm("Do you want to update the book?")
-            if(isConfirmed){
-            const book = {
+        updateBook(){
+            this.$swal.fire({
+              title: 'Do you want to save the changes?',
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: 'Save',
+              denyButtonText: `Don't save`,
+            }).then(async(result) => {
+              if (result.isConfirmed) {
+                  const book = {
                 _id: this.id,
                 title: this.title,
                 author: this.author,
@@ -121,13 +126,18 @@ export default {
             const res = await api.put("book/", book, opts)
             if(res.data.success){
               this.$router.push("/")
-              const toast = new Toast(res.data.message)
-              toast.show()
+                this.$swal.fire('Saved!', '', 'success')
             }else{
-              const toast = new Toast(res.data.message, "", "danger")
-              toast.show()
+                this.$swal.fire(
+                  'The Internet?',
+                  'That thing is still around?',
+                  'question'
+                )
             }
-            }
+              } else if (result.isDenied) {
+                this.$swal.fire('Changes are not saved', '', 'info')
+              }
+            })
         },
         addTag(){
             if(this.tagName.trim() !== ""){
@@ -138,10 +148,16 @@ export default {
         removeTag(){
             this.tags = []
         },
-        async deleteBook(){
-          const isConfirmed = confirm("Do you want to delete the book?")
-          if(isConfirmed){
-            this.isloading = true
+        deleteBook(){
+        this.$swal.fire({
+          title: 'Do you want to delete the book?',
+          showDenyButton: true,
+          showCancelButton: true,
+          confirmButtonText: 'Delete',
+          denyButtonText: `Don't Delete`,
+        }).then(async(result) => {
+          if (result.isConfirmed) {
+              this.isloading = true
             const token = localStorage.getItem("token")
             const opts = {
                 headers: {
@@ -151,15 +167,19 @@ export default {
             const res = await api.delete("book/"+this.id, opts)
             this.isloading = false
             if(res.data.success){
-              const toast = new Toast(res.data.message)
-              toast.show()
-              this.$router.push("/")
+                this.$swal.fire('Deleted!', '', 'success')
             }
             else{
-              const toast = new Toast(res.data.message, "", "danger")
-              toast.show()
+                 this.$swal.fire(
+                  'The Internet?',
+                  'That thing is still around?',
+                  'question'
+                )
             }
+          } else if (result.isDenied) {
+            this.$swal.fire('Deleted Canceled', '', 'info')
           }
+        })
         }
     }
 }
