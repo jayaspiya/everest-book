@@ -88,7 +88,7 @@ export default {
 .cover{
     padding: 10px;
     max-width: 185px;
-    height: 335px;
+    height: 305px;
     width: fit-content;
     border: 1px solid rgb(146, 146, 146);
     cursor: pointer;
@@ -104,20 +104,35 @@ img{
 }
 .detail{
     position: relative;
-    height: 105px;
-    overflow: hidden;
+    height: 80px;
 }
+.cover:hover .desc{
+    bottom: 25px;
+} 
 .cover:hover .action{
-        bottom: 0;
-}
+    opacity: 1;
+} 
 .action{
     position: absolute;
-    bottom: -30px;
+    bottom: 0px;
+    z-index: 2;
+    opacity: 0;
     width: 100%;
+    transition: all .3s ease-out;
+}
+.desc{
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
+    width: 100%;
+    background: #ffffff;
     transition: all .2s ease-out;
 }
 .price::before{
     content: "Rs.";
+}
+.price{
+    font-size: 1.2rem;
 }
 .author , .title{
     color: var(--base-color);

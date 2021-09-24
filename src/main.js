@@ -14,6 +14,9 @@ const app = createApp(App)
 app.use(router)
 app.use(store)
 
+import VueAgile from "vue-agile"
+
+app.use(VueAgile)
 app.use(VueSweetalert2)
 
 app.component("base-card", BaseCard)
