@@ -5,6 +5,7 @@ import Discover from "../views/Discover.vue"
 import AboutUs from "../views/AboutUs.vue"
 import Signup from "../views/Signup.vue"
 import Login from "../views/Login.vue"
+import NoPage from "../views/NoPage.vue"
 import AdminLogin from "../views/AdminLogin.vue"
 import Cart from "../views/Cart.vue"
 import Book from "../views/Book.vue"
@@ -149,6 +150,11 @@ const routes = [
         props: true,
       },
     ],
+  },
+  {
+    path: "/:id",
+    name: "NoPage",
+    component: NoPage,
   },
 ]
 
