@@ -46,6 +46,7 @@ export default {
 body{
   color: #3d3c3c;
   font-family: 'Kaisei HarunoUmi', serif;
+  overflow-x: hidden;
 }
 nav a{
     border: 2px var(--base-color) solid;

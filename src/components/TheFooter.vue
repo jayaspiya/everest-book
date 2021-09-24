@@ -1,4 +1,11 @@
 <template>
+  <div class="flex-wrap">
+    <img src="../assets/home-2-client-2.png">
+    <img src="../assets/home-2-client-3.png">
+    <img src="../assets/home-2-client-4.png">
+    <img src="../assets/home-2-client-5.png">
+    <img src="../assets/home-2-client-6.png">
+  </div>
     <div class="footer">
   <div class="contain">
   <div class="col">
@@ -63,6 +70,18 @@
 </div>
 </template>
 <style scoped>
+.flex-wrap{
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.flex-wrap img{
+  transition: all .2s ease;
+}
+.flex-wrap img:hover{
+  transform: translateY(-10px);
+}
 .footer {
     z-index: -2;
   width: 100%;

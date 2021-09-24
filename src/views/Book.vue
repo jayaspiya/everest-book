@@ -2,54 +2,68 @@
   <base-spinner v-if="isloading"></base-spinner>
 <div v-else>
     <div class="justify-between">
-            <h2>{{title}}</h2>
+            <h2>{{title.toUpperCase()}}</h2>
             <div v-if="isAuth">
                 <router-link :to="{ name: 'EditBook', params: { id: id }}" v-if="isAdmin">
                     <button>Edit</button>
                 </router-link>
                 <button @click="addItem" :disabled="btnDisabled" v-else >{{btnText}}</button>
-
             </div>
         </div>
   <div class="flex">
     <book-mockup :backCover="backCover" :frontCover="frontCover" :sideCover="sideCover"/>
     <div>
-        <div class="detail">
-            <h4>Author: </h4>
-            <p>{{author}}</p>
-        </div>
-        <div class="detail">
-            <h4>Tags: </h4>
-            <ul class="flex">
-                <li v-for="(tag, index) in tags" :key="index" class="tag">
-                    <span>{{tag}}</span>
-                </li>
-            </ul>
-        </div>
-        <div class="detail">
-            <h4>ISBN: </h4>
-            <p>{{isbn}}</p>
-        </div>
-        <div class="detail">
-            <h4>Release Year: </h4>
-            <p>{{releasedYear}}</p>
-        </div>
-        <div class="detail">
-            <h4>Price: </h4>
-            <p>Rs.{{price}}</p>
-        </div>
+        <h3>Detail</h3>
+        <table>
+            <tr>
+                <td>Author</td>
+                <td>{{author}}</td>
+            </tr>
+            <tr>
+                <td>Tags</td>
+                <td>
+                <ul class="flex">
+                    <li v-for="(tag, index) in tags" :key="index" class="tag">
+                        <span>{{tag}}</span>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>ISBN </td>
+                <td>{{isbn}}</td>
+            </tr>
+            <tr>
+                <td>Release Year</td>
+                <td>{{releasedYear}}</td>
+            </tr>
+             <tr>
+                <td>Price</td>
+                <td>
+                    <p v-if="discount>0">
+                    <span class="price">Rs.{{price}}</span>
+                    <span class="discount" > Rs.{{(100+discount)*price/100}}</span>
+                </p>
+                <p v-else>
+                    <span class="price">Rs.{{price}}</span>
+                </p>
+                </td>
+            </tr>
+        </table>
         <h4>Synopsis</h4>
         <p>
         {{synopsis}}
         </p>
-        
-        </div>
-      </div>
-    <h2>Reviews</h2>
-    <base-card>
+        <h3>Reviews</h3>
+            <base-card v-if="isAuth">
         <ReviewForm/>
     </base-card>
-    <the-review v-for="review in reviews" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id"></the-review>
+        <div class="review-container">
+    <the-review v-for="review in reviews.reverse()" :id="review._id" :description="review.description" :user="review.user" :rating="review.rating" :key="review._id"></the-review>
+        </div>
+        </div>
+      </div>
+   
 </div>
 </template>
 <script>
@@ -72,6 +86,7 @@ export default {
             isbn: "",
             synopsis: "",
             price: 0,
+            discount: 0,
             releasedYear: 2000,
             tags: [],
             frontCover:"",
@@ -104,6 +119,7 @@ export default {
             this.isbn = book.isbn
             this.synopsis = book.synopsis
             this.price = book.price
+            this.discount = book.discount
             this.releasedYear = book.releasedYear
             this.tags = book.tags
             this.frontCover = book.cover.front
@@ -153,14 +169,21 @@ export default {
 </script>
 
 <style scoped>
+.discount{
+    color: #555555;
+    text-decoration: line-through; 
+    font-size: .9rem;
+}
+tr > td:first-child{
+    color: var(--base-color);
+    font-weight: bold;
+}
+.review-container{
+    overflow-y: scroll;
+    height: 40vh;
+}
 .flex > div{
     max-width: 60%;
-}
-.detail{
-    display: flex;
-}
-.detail h4{
-    margin-right: 10px;
 }
 .tag{
     list-style: none;

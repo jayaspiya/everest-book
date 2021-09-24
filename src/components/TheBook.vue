@@ -7,7 +7,13 @@
             {{book.title}}
         </h3>
         <p class="author">{{book.author}}</p>
-        <p class="price">{{book.price}}</p>
+        <p v-if="book.discount>0">
+            <span class="price">Rs.{{book.price}}</span>
+            <span class="discount" > Rs.{{(100+book.discount)*book.price/100}}</span>
+        </p>
+        <p v-else>
+            <span class="price">Rs.{{book.price}}</span>
+        </p>
         </div>
 
         <div class="flex action">
@@ -128,13 +134,15 @@ img{
     background: #ffffff;
     transition: all .2s ease-out;
 }
-.price::before{
-    content: "Rs.";
-}
 .price{
     font-size: 1.2rem;
 }
 .author , .title{
     color: var(--base-color);
+}
+.discount{
+    color: #555555;
+    text-decoration: line-through; 
+    font-size: .9rem;
 }
 </style>

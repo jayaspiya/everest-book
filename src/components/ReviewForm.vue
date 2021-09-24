@@ -31,7 +31,6 @@ export default {
         },
         async submit(){
             const review = {
-                book: this.$route.params.id,
                 description: this.description,
                 rating: this.rating
             }
@@ -41,7 +40,8 @@ export default {
                     'Authorization': "Bearer " +token
                 }
             }
-            const res = await api.post("/review",review, opts)
+            const res = await api.post("/review/"+this.$route.params.id, review, opts)
+            console.log(res)
             if(res.data.success){
                 // TODO: Live Comment Add
                 const toast = new Toast(res.data.message)

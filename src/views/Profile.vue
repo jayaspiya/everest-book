@@ -1,16 +1,15 @@
 ;<template>
-  <h3>User Profile</h3>
-  <div class="center">
+        <h2>Hello {{ user.firstname }} {{ user.lastname }}</h2>
     <base-spinner v-if="isloading"></base-spinner>
-  <base-card v-else>
-      <img :src="user.profile" />
-      <h2>Hello {{ user.firstname }} {{ user.lastname }}</h2>
-      <p><i class="fas fa-envelope"></i>{{user.email}}</p>
-      <p><i class="fas fa-phone-square"></i>{{user.phone}}</p>
-      <p><i class="far fa-map"></i>{{user.address}}</p>
+  <div v-else>
+      <img :src="user.profile" class="profile" />
+      <p><strong>Email: </strong>{{user.email}}</p>
+      <p><strong>Phone: </strong>{{user.phone}}</p>
+      <p><strong>Address: </strong>{{user.address}}</p>
+      <p><strong>Total Reviews: </strong>{{user.reviews}}</p>
+      <p><strong>Total Orders: </strong>{{user.orders}}</p>
       <h3>Recently Viewed</h3>
       <recently-viewed :books="user.recentlyViewed"></recently-viewed>
-  </base-card>
   </div>
 </template>
 <script>
@@ -46,7 +45,7 @@ export default {
 }
 </script>
 <style scoped>
-img {
+.profile {
   height: 150px;
 }
 </style>

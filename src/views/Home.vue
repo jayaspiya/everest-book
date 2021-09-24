@@ -1,8 +1,10 @@
 ;<template>
   <h2>Home page</h2>
-  <TheSlider/>
   <base-spinner v-if="isloading"></base-spinner>
-  <book-list v-else :books="books"></book-list>
+  <div v-else>
+    <TheSlider/>
+    <book-list :books="books"></book-list>
+  </div>
 </template>
 <script>
 import api from "../utils/api.js"

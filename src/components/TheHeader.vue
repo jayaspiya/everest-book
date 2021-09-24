@@ -9,6 +9,9 @@
         <li>
           <router-link to="/discover"> Discover </router-link>
         </li>
+        <li>
+          <router-link to="/about"> About Us </router-link>
+        </li>
         <li v-if="isAuth && isAdmin">
           <router-link to="/admin" >Admin</router-link>
         </li>

@@ -27,7 +27,7 @@ p{
     transition: 0.3s ease-out;
 }
 img{
-    width: 100px;
+    width: 150px;
     cursor: pointer;
 }
 a{

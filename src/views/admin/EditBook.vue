@@ -20,6 +20,14 @@
             <input type="number" name="price" autocomplete="off" v-model="price" required>
         </div>
         <div class="form-control">
+            <label for="price">Discount</label>
+            <input type="number" name="price" autocomplete="off" v-model="discount" required>
+        </div>
+        <div class="form-control">
+            <label for="price">Quantity</label>
+            <input type="number" name="price" autocomplete="off" v-model="quantity" required>
+        </div>
+        <div class="form-control">
             <label for="releasedYear">Released Year</label>
             <input type="number" name="releasedYear" autocomplete="off" v-model="releasedYear" required>
         </div>
@@ -68,6 +76,8 @@ export default {
     this.price = book.price
     this.releasedYear = book.releasedYear
     this.synopsis = book.synopsis
+    this.quantity = book.quantity ?? 0
+    this.discount = book.discount ?? 0
     this.isloading = false
   },
     data(){
@@ -78,6 +88,8 @@ export default {
             author: "",
             isbn: "",
             price: 0,
+            quantity: 0,
+            discount: 0,
             synopsis: "",
             tags: [],
             releasedYear: 2020,
@@ -96,7 +108,9 @@ export default {
                 price: this.price,
                 synopsis: this.synopsis,
                 releasedYear: this.releasedYear,
-                tags: this.tags
+                tags: this.tags,
+                discount: this.discount,
+                quantity: this.quantity
             }
             const token = localStorage.getItem("token")
             const opts = {
