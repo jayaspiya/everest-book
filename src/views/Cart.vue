@@ -81,6 +81,7 @@ export default {
             if(res.data.success){
                 const toast = new Toast(res.data.message)
                 toast.show()
+                this.$router.push("/")
             }
             else{
                 const toast = new Toast(res.data.message,"", "danger" )

@@ -168,6 +168,7 @@ export default {
             this.isloading = false
             if(res.data.success){
                 this.$swal.fire('Deleted!', '', 'success')
+                this.$router.go(-1)
             }
             else{
                  this.$swal.fire(

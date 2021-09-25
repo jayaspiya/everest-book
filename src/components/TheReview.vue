@@ -24,7 +24,6 @@
     <button v-if="editMode" class="btnUpdate" @click="updateReview">Update Review</button>
     <button v-if="editMode" class="btnDelete" @click="deleteReview">Delete Review</button>
     <button @click="toggleEditMode" v-if="isUserSame"><i class="far fa-edit"  ></i>{{editText}}</button>
-
 </base-card>
 </template>
 <script>
@@ -61,9 +60,15 @@ export default {
         setEditRating(event){
             this.editRating = event.target.value
         },
-        async updateReview(){
-            const isConfirmed = confirm("Do you want to update the book?")
-            if(isConfirmed){
+        updateReview(){
+            this.$swal.fire({
+                title: 'Do you want to save the changes?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+                denyButtonText: `Don't save`,
+            }).then(async(result) => {
+            if (result.isConfirmed) {
                 const token = localStorage.getItem("token")
                 const opts = {
                     headers: {
@@ -77,12 +82,22 @@ export default {
                 console.log(res)
                 this.toggleEditMode()
                 this.$emit("review-update")
+                this.$swal.fire('Saved!', '', 'success')
+            } else if (result.isDenied) {
+                this.$swal.fire('Changes are not saved', '', 'info')
             }
+            })
         },
 
-        async deleteReview(){
-            const isConfirmed = confirm("Do you want to delete the book?")
-            if(isConfirmed){
+        deleteReview(){
+            this.$swal.fire({
+                title: 'Do you want to delete the review?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Delete',
+                denyButtonText: `Don't Delete`,
+            }).then(async (result) => {
+            if (result.isConfirmed) {
                 const token = localStorage.getItem("token")
                 const opts = {
                     headers: {
@@ -93,7 +108,11 @@ export default {
                 console.log(res)
                 this.toggleEditMode()
                 this.$emit("review-update")
+                this.$swal.fire('Deleted!', '', 'success')
+            } else if (result.isDenied) {
+                this.$swal.fire('Canceled', '', 'info')
             }
+            })
         }
         
     },

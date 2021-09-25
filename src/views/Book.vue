@@ -56,7 +56,7 @@
         </p>
         <div class="justify-between">
             <h3>Reviews</h3>
-            <button @click="toggleForm">{{writeReview? "Cancel":"Write Review"}}</button>
+            <button v-if="isAuth" @click="toggleForm">{{writeReview? "Cancel":"Write Review"}}</button>
         </div>
         <base-card v-if="isAuth && writeReview">
             <ReviewForm @new-review="getBook"/>
@@ -110,7 +110,7 @@ export default {
     methods:{
         async addItem(){
             const token = localStorage.getItem("token")
-            const url = "/user/addtocart/"+this.book._id
+            const url = "/user/addtocart/"+this.id
             this.btnText = "Adding"
             const res = await api.post(url,
                 {

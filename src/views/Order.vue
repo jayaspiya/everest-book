@@ -2,6 +2,12 @@
   <h2>Orders</h2>
     <base-spinner v-if="isloading"></base-spinner>
     <div v-else>
+        <div v-if="orders.length === 0">
+            <h3>There are no orders</h3>
+            <div class="center">
+                <img src="../assets/empty.png"/>
+            </div>
+        </div>
         <base-card v-for="order in orders" :key="order._id">
             <h3>Order ID: {{order._id}}</h3>
             <h4>Status: {{order.status}}</h4>
