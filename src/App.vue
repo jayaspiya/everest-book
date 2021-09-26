@@ -43,6 +43,13 @@ export default {
   --blue: #007bff;
   --success: #28a745;
 }
+.noStock{
+  background-color: var(--danger);
+  color: var(--background);
+  font-size: .8rem;
+  padding: 5px;
+	display: inline-block;
+}
 body{
   color: #3d3c3c;
   font-family: 'Kaisei HarunoUmi', serif;
@@ -130,6 +137,9 @@ button:hover{
 .center{
   display: flex;
   justify-content: center;
+}
+.hide{
+  display: none;
 }
 .align-center{
   display: flex;

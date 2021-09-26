@@ -9,7 +9,9 @@
                         <i class="far fa-edit"></i>Edit Book</button>
                 </router-link>
                 <div v-else>
-                    <h4 v-if="quantity === 0">Out of Stock</h4>
+                    <p v-if="quantity === 0" class="noStock">
+                        Out of Stock
+                    </p>
                     <button @click="addItem" :disabled="btnDisabled" v-else >
                         <i class="fas fa-shopping-bag"></i>{{btnText}}
                     </button>

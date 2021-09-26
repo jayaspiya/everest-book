@@ -1,5 +1,5 @@
 ;<template>
-  <tr>
+  <tr :class="{hide: hide}">
     <td>{{order._id.slice(-10)}}</td>
     <td>{{order.user.firstname}} {{order.user.lastname}}</td>
     <td>{{order.user.phone}}</td>
@@ -23,6 +23,11 @@
             {{status}}
         </div>
     </td>
+    <td>
+         <button class="btnDelete" @click="deleteOrder">
+            <i class="fas fa-trash"></i>Delete
+        </button>
+    </td>
   </tr>
 </template>
 <script>
@@ -39,7 +44,8 @@ export default {
     props:["order"],
     data(){
         return {
-            status: ""
+            status: "",
+            hide: false,
         }
     },
     computed:{
@@ -83,6 +89,32 @@ export default {
                 const toast = new Toast(res.message,"","danger")
                 toast.show()
             }
+        },
+        deleteOrder(){
+            this.$swal.fire({
+              title: 'Do you want to delete the order?',
+              showCancelButton: true,
+              confirmButtonText: 'Delete',
+            }).then(async (result) => {
+              if (result.isConfirmed) {
+                const opts = {
+                    headers: {
+                        'Authorization': "Bearer " + localStorage.getItem("token")
+                    }
+                }
+                const orderId = this.order._id
+                const res = await api.delete("/order/"+ orderId, opts)
+                if(res.data.success){
+                    const toast = new Toast("Order Deleted")
+                    this.hide = true
+                    toast.show()
+                }
+                else{
+                    const toast = new Toast(res.message,"","danger")
+                    toast.show()
+                }
+              }
+            })
         }
     }
 }
