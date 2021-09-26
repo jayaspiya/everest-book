@@ -250,7 +250,14 @@ input{
   transform: rotate(45deg);
 }
 /* Custom Checkbox */
-
+.btn{
+border: 2px solid var(--base-color);
+  background-color:var(--base-color) ;
+  padding: 3px 10px;
+  border-radius: 2px;
+  color: var(--alt-color);
+  cursor: pointer;
+}
 /* Star Rating */
 .rating {
 color: #b7b7b7;

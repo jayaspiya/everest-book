@@ -28,8 +28,15 @@
                     <button>
                         <i class="far fa-edit"></i>Edit Book</button>
                 </router-link>
-                <button @click="addItem" :disabled="btnDisabled" v-else >
-                <i class="fas fa-shopping-bag"></i>{{btnText}}</button>
+                <div v-else>
+                    <button v-if="book.quantity === 0">
+                        <i class="fas fa-heart-broken"></i>No Stock
+                    </button>
+                    <button @click="addItem" :disabled="btnDisabled" v-else >
+                        <i class="fas fa-shopping-bag"></i>{{btnText}}
+                    </button>
+                </div>
+                
             </div>
         </div>
 

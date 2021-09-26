@@ -52,21 +52,21 @@ import api from "../../utils/api.js"
 export default {
     data(){
         return{
-            email: "admin@everest.com",
-            password:"123123",
-            cpassword: "123123",
-            manager: "Someone",
-            branch:"Lion",
-            phone: "98989898",
-            latitude:"123",
-            longitude: "123",
+            email: "",
+            password:"",
+            cpassword: "",
+            manager: "",
+            branch:"",
+            phone: "",
+            latitude:"27.695410573378158",
+            longitude: "84.42346769727541",
             showOnMap: true
         }
     },
     methods:{
         async submit(){
             if(this.password === this.cpassword){
-                const isConfirmed = confirm("Do you want to update the book?")
+                const isConfirmed = confirm("Do you want to create a new admin?")
                 if(isConfirmed){
                     const store = {
                         email: this.email,

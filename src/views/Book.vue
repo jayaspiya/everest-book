@@ -5,9 +5,15 @@
             <h2>{{title.toUpperCase()}}</h2>
             <div v-if="isAuth">
                 <router-link :to="{ name: 'EditBook', params: { id: id }}" v-if="isAdmin">
-                    <button>Edit</button>
+                    <button>
+                        <i class="far fa-edit"></i>Edit Book</button>
                 </router-link>
-                <button @click="addItem" :disabled="btnDisabled" v-else >{{btnText}}</button>
+                <div v-else>
+                    <h4 v-if="quantity === 0">Out of Stock</h4>
+                    <button @click="addItem" :disabled="btnDisabled" v-else >
+                        <i class="fas fa-shopping-bag"></i>{{btnText}}
+                    </button>
+                </div>
             </div>
         </div>
   <div class="flex">
@@ -90,6 +96,7 @@ export default {
             synopsis: "",
             price: 0,
             discount: 0,
+            quantity:0,
             releasedYear: 2000,
             tags: [],
             frontCover:"",
@@ -159,6 +166,7 @@ export default {
             this.sideCover = book.cover.side
             this.backCover = book.cover.back
             this.reviews = book.reviews
+            this.quantity = book.quantity
             this.isloading = false
         }
         else{

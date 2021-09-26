@@ -3,8 +3,12 @@
   <base-spinner v-if="isloading"></base-spinner>
   <div class="center" v-else>
      <div v-if="!image">
-    <h2>Select an image</h2>
-    <input type="file" @change="onFileChange">
+    <h2 class="center">Select an image</h2>
+    <div class="bar-warn">
+      <h3>Image Upload</h3>
+      <p>Please upload the sample image in <a href="https://github.com/zayazzp/everest-book-sample-book/tree/main/assets" target="_blank">Sample Book Cover</a> </p>
+    </div>
+      <input type="file" @change="onFileChange" >
   </div>
   <div v-else>
     <img :src="image" />
@@ -85,5 +89,19 @@ img {
 }
 button{
   margin: 0 10px
+}
+.bar-warn{
+  padding: 10px;
+  margin: 10px;
+  color: #333;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  color: #756e15;
+  background: #fffbd1;
+  border: 1px solid #87803e;
+}
+.bar-warn h3{
+  color: #756e15;
+  text-align: center;
 }
 </style>

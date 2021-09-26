@@ -11,6 +11,7 @@ import Cart from "../views/Cart.vue"
 import Order from "../views/Order.vue"
 import Book from "../views/Book.vue"
 import Profile from "../views/Profile.vue"
+import EditProfile from "../views/EditProfile.vue"
 import Admin from "../views/Admin.vue"
 import New from "../views/admin/New.vue"
 import EditBook from "../views/admin/EditBook.vue"
@@ -82,6 +83,12 @@ const routes = [
     path: "/profile",
     name: "Profile",
     component: Profile,
+    beforeEnter: userGuard,
+  },
+  {
+    path: "/edit-profile",
+    name: "EditProfile",
+    component: EditProfile,
     beforeEnter: userGuard,
   },
   {
