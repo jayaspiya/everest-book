@@ -24,7 +24,7 @@
         </div>
     </td>
     <td>
-         <button class="btnDelete" @click="deleteOrder">
+        <button class="btnDelete" @click="deleteOrder">
             <i class="fas fa-trash"></i>Delete
         </button>
     </td>
@@ -97,6 +97,7 @@ export default {
               confirmButtonText: 'Delete',
             }).then(async (result) => {
               if (result.isConfirmed) {
+                //   On Confirm
                 const opts = {
                     headers: {
                         'Authorization': "Bearer " + localStorage.getItem("token")

@@ -42,6 +42,7 @@ export default {
       if(res.data.success){
         localStorage.setItem("token",res.data.accessToken )
         localStorage.setItem("userType","ADMIN")
+        // Reload to open app as ADMIN
         window.location.reload()
         const toast = new Toast(res.data.message)
         toast.show()

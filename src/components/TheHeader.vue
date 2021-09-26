@@ -1,6 +1,6 @@
 ;<template>
   <header :class="{headerScroll:scrollHeader}">
-    <h1>Everest Book</h1>
+    <router-link to="/" class="title-header"> Everest Book </router-link>
     <nav :class="{navActive:openNav}">
       <ul>
         <li>
@@ -37,31 +37,17 @@
 </template>
 
 <script>
-// import api from "../utils/api.js"
 export default {
   async created () {
     window.addEventListener('scroll', this.handleScroll);
     const token = localStorage.getItem("token")
     const userType = localStorage.getItem("userType")
-    // if(token){
-    // const res = await api.get("/user/profile",{
-    //     headers: {
-    //         'Authorization': "Bearer " + token
-    //     }
-    // })
-    // if(res.data.success){
       if(token && token != "" ){
         this.isAuth = true
       }
       if(userType && userType === "ADMIN" ){
         this.isAdmin = true
       }
-      // localStorage.setItem("user",res.data.data._id)
-    // }
-    // else{
-    //   this.logoutUser()
-    // }
-    // }
   },
   unmounted () {
     window.removeEventListener('scroll', this.handleScroll);

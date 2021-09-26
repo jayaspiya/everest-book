@@ -8,6 +8,7 @@
 export default {
     data(){
         return{
+            // Default 404 Images
             images:[
                 "https://res.cloudinary.com/zayazzp/image/upload/v1632499742/404/nopage19_n65sah.png",
                 "https://res.cloudinary.com/zayazzp/image/upload/v1632499741/404/nopage18_ca0eyp.png",

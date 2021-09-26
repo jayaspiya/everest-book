@@ -58,6 +58,7 @@ export default {
             manager: "",
             branch:"",
             phone: "",
+            // Default Store Location
             latitude:"27.695410573378158",
             longitude: "84.42346769727541",
             showOnMap: true
@@ -65,6 +66,7 @@ export default {
     },
     methods:{
         async submit(){
+            // Check password matches or not
             if(this.password === this.cpassword){
                 const isConfirmed = confirm("Do you want to create a new admin?")
                 if(isConfirmed){

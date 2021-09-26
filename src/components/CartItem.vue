@@ -2,7 +2,7 @@
     <tr v-if="!isDeleted"> 
         <td>
             <h3>
-            {{book.title}}
+                {{book.title}}
             </h3>
             <div class="btns">
             <button class="btnView">
@@ -14,14 +14,15 @@
                 <i class="fas fa-times-circle"></i>
             </button>
             </div>
-
         </td>
         <td class="cart-image-container"><div class="flex">
+            <!-- Cart -->
             <img :src="book.cover.front"/>
             <img :src="book.cover.back"/>
         </div></td>
         <td>{{book.price}}</td>
         <td>
+            <!-- Quantity -->
             <div class="quantity-container">
                 <button @click="increament">+</button>
                 <p class="quantity">{{quantity}}</p>

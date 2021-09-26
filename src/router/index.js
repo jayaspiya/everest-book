@@ -20,6 +20,7 @@ import MissingCovers from "../views/admin/MissingCovers.vue"
 import UploadCover from "../views/admin/UploadCover.vue"
 import RegisterAdmin from "../views/admin/RegisterAdmin.vue"
 
+// Admin Guard
 function adminGuard(to, from, next) {
   let isAuthenticated = false
   const token = localStorage.getItem("token")
@@ -35,6 +36,7 @@ function adminGuard(to, from, next) {
     next("/")
   }
 }
+// User Navigation Guard
 function userGuard(to, from, next) {
   let isAuthenticated = false
   const token = localStorage.getItem("token")
@@ -50,6 +52,7 @@ function userGuard(to, from, next) {
     next("/")
   }
 }
+// Login Navigation Guard
 function userGuard2(to, from, next) {
   let isAuthenticated = true
   if (localStorage.getItem("token")) {
@@ -127,6 +130,7 @@ const routes = [
     component: Book,
   },
   {
+    // Admin Route
     path: "/admin",
     name: "Admin",
     component: Admin,

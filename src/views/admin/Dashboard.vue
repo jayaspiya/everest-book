@@ -13,6 +13,7 @@
         <th>Price</th>
         <th class="text-center">Status</th>
       </tr>
+      <!-- Order Loop -->
       <order-item v-for="order in orders" :key="order._id" :order="order"></order-item>
     </table>
   </div>

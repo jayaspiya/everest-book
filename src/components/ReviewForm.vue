@@ -29,14 +29,17 @@ export default {
     },
     methods:{
         setRating(event){
+            // Set Rating
             this.rating = event.target.value
         },
         async submit(){
+            // On Form Submit
             const review = {
                 description: this.description,
                 rating: this.rating
             }
             const token = localStorage.getItem("token")
+            // Headers
             const opts = {
                 headers: {
                     'Authorization': "Bearer " +token

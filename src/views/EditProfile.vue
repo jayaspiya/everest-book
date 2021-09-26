@@ -3,7 +3,6 @@
     <h2>Update User</h2>
     <base-spinner v-if="isloading"></base-spinner>
 <div v-else>
-
     <form @submit.prevent="updateUser" >
       <div class="form-control">
         <label for="fname">First Name</label>

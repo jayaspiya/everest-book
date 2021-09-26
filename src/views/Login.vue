@@ -16,7 +16,6 @@
     </form>
     <p>New to Everest Book? <router-link to="/signup">Join Now</router-link></p>
     <p>Admin Login <router-link to="/admin-login">Here</router-link></p>
-
   </auth-container>
 </template>
 

@@ -50,7 +50,6 @@ img {
   transform-origin: center;
   background-position: center;
   transform: rotateY(180deg) translateZ(30px);
-  /* translateZ = book width */
 }
 .img-front {
   position: absolute;

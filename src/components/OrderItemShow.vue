@@ -1,5 +1,6 @@
 <template>
     <div class="orderImageContainer">
+        <!-- Loop OrderBook -->
         <router-link  v-for="order in orderBook.slice(0, 5)" :key="order" :to="{ name: 'Book', params: { id: order.bookId._id }}">
             <img :src="order.bookId.cover.front" :alt="order.bookId.title">
         </router-link>

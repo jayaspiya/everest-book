@@ -11,14 +11,16 @@ import VueSweetalert2 from "vue-sweetalert2"
 import "sweetalert2/dist/sweetalert2.min.css"
 
 const app = createApp(App)
+// Router & Vuex
 app.use(router)
 app.use(store)
 
 import VueAgile from "vue-agile"
-
+// Alert Dialogs
 app.use(VueAgile)
 app.use(VueSweetalert2)
 
+// Main Component
 app.component("base-card", BaseCard)
 app.component("base-spinner", BaseSpinner)
 app.component("hamburger-menu", HamburgerMenu)

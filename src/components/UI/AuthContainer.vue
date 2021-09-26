@@ -7,7 +7,7 @@
         <img src="../../assets/books-wall.jpeg" alt="Book Wall">
       </div>
       <div class="form-cover">
-    <slot></slot>
+        <slot></slot>
       </div>
   </div>
   </base-card>

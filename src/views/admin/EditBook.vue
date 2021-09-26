@@ -146,9 +146,11 @@ export default {
             }
         },
         removeTag(){
+          // Refresh Tags
             this.tags = []
         },
         deleteBook(){
+          // Delete Book
         this.$swal.fire({
           title: 'Do you want to delete the book?',
           showDenyButton: true,

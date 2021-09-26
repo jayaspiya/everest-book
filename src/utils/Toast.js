@@ -7,6 +7,7 @@ export default class Toast {
     this.toastType = toastType
   }
   show() {
+    // custom toast
     createToast(
       {
         title: this.title,

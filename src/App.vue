@@ -77,6 +77,12 @@ button a{
 button:hover a{
   color: var(--base-color);
 }
+.title-header{
+  color: var(--base-color);
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-decoration: none;
+}
 
 /* Nav */
 nav > ul{

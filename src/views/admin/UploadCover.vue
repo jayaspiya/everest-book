@@ -4,6 +4,7 @@
   <div class="center" v-else>
      <div v-if="!image">
     <h2 class="center">Select an image</h2>
+    <!-- Image Upload Warning -->
     <div class="bar-warn">
       <h3>Image Upload</h3>
       <p>Please upload the sample image in <a href="https://github.com/zayazzp/everest-book-sample-book/tree/main/assets" target="_blank">Sample Book Cover</a> </p>
@@ -38,6 +39,7 @@ export default {
       if (!files.length)
         return;
       this.file = files[0]
+      // Show Uploaded Image in Browser
       this.createImage(files[0]);
     },
     createImage(file) {
